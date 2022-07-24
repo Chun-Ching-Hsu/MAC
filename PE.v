@@ -3,7 +3,8 @@ module PE
     #(  parameter DataInWidth = 8,
         parameter DataOutWidth = 16,
         parameter BufferWidth = 2,
-        parameter BufferSize = 4 )
+        parameter BufferSize = 4,
+        parameter IndexSize = 4  )
     (   clk,
         W_DataInValid,W_DataInRdy,W_DataIn,
         W_DataOut,W_DataOutValid,W_DataOutRdy,
@@ -141,7 +142,7 @@ module PE
         .Pointer(I_TP),
         .clk(clk)
     );
-    Pointer O_TP(
+    Pointer O_TP(       
         .EN(O_Rec_Handshanking),
         .Pointer(O_TP),
         .clk(clk)
@@ -188,10 +189,17 @@ module PE
 
     assign ReadyM = W_ReadyM & I_ReadyM & O_ReadyM;
     
-    assign W_Valid = W_ReadyP | W_ReadyM;
-    assign I_Valid = I_ReadyM | I_ReadyP;
-    assign O_Valid = O_ReadyM;
-
+    // assign W_Valid = W_ReadyP | W_ReadyM;
+    // assign I_Valid = I_ReadyM | I_ReadyP;
+    // assign O_Valid = O_ReadyM;
+    // 改成下面這樣
+    always@(posedge clk)begin
+        for (index=0; index<IndexSize ; index = index + 1 )begin
+            assign W_Valid[index] =  W_ReadyP[index] | W_ReadyM[index];
+            assign I_Valid[i] = I_ReadyP[i] | ReadyM[i];
+            assign O_Valid[i] = O_ReadyM[i];
+        end
+    end
     assign W_Full = W_Valid[0] & W_Valid[1] & W_Valid[2] & W_Valid[3];
     assign I_Full = I_Valid[0] & I_Valid[1] & I_Valid[2] & I_Valid[3]; 
     assign O_Full = O_Valid[0] & O_Valid[1] & O_Valid[2] & O_Valid[3]; 

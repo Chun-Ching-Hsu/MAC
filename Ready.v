@@ -6,11 +6,13 @@ module Ready
     (TP,HP,Round,Ready);
     input [BufferWidth-1] TP,HP;
     input Round;
-    reg [BufferSize-1] TmpReady;
-    output [BufferSize-1] Ready;
-    
+
     wire PseudoTP = Round ? TP+4 : TP ;
     wire [PseudoBufferWidth-1:0] Distance = PseudoTP - HP;
+    reg [BufferSize-1] TmpReady;
+    
+    output [BufferSize-1] Ready;
+    
     always @(*)begin
         case(Distance)
             3'b 000: TmpReady = 4'b 0000;
