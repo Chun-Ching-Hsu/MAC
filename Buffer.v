@@ -7,7 +7,7 @@ module Buffer
     input EN;
     input [BufferWidth-1:0] W_Addr,R_Addr1,R_Addr2;
     input [DataWidth-1:0] DataIn;
-
+    #測試是否ok
     reg [DataWidth-1:0] Buffer [0:BufferSize-1];
 
     output [DataWidth-1:0] DataOut1,DataOut2;

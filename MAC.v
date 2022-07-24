@@ -10,6 +10,6 @@ module MAC
 
 
 
-
+        assign DataOut = W_Data * I_Data + O_Data; 
 
 endmodule
