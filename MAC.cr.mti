@@ -1,0 +1,156 @@
+C:/intelFPGA_lite/18.0/MAC/Ready.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Ready.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Ready
+
+Top level modules:
+	Ready
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Round.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Round.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Round
+
+Top level modules:
+	Round
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module OutputDataPipeline
+
+Top level modules:
+	OutputDataPipeline
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module mult_block
+
+Top level modules:
+	mult_block
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/PE_tb.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/PE_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PE_tb
+
+Top level modules:
+	PE_tb
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/multiply_tb.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/multiply_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module multiply_tb
+
+Top level modules:
+	multiply_tb
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Add_tb.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Add_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Add_tb
+
+Top level modules:
+	Add_tb
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module NOPPipeline_tb
+
+Top level modules:
+	NOPPipeline_tb
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/MAC.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/MAC.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MAC
+
+Top level modules:
+	MAC
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Buffer.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Buffer.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Buffer
+
+Top level modules:
+	Buffer
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Mul.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Mul.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mul
+
+Top level modules:
+	Mul
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Add.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Add.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Add
+
+Top level modules:
+	Add
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module pipeline_internal_fv
+-- Compiling module dff_bus
+
+Top level modules:
+	pipeline_internal_fv
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module altmult_add
+
+Top level modules:
+	altmult_add
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MAC_Pipeline
+
+Top level modules:
+	MAC_Pipeline
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module lpm_add_sub
+
+Top level modules:
+	lpm_add_sub
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/NOPPipeline.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/NOPPipeline.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module NOPPipeline
+
+Top level modules:
+	NOPPipeline
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Pointer.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Pointer.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Pointer
+
+Top level modules:
+	Pointer
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/PE.v {1 {vlog -work work -stats=none {C:\intelFPGA_lite\18.0\MAC\PE.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module PE
+
+Top level modules:
+	PE
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module lpm_mult
+
+Top level modules:
+	lpm_mult
+
+} {} {}} C:/intelFPGA_lite/18.0/MAC/Mul_bb.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/MAC/Mul_bb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Mul
+
+Top level modules:
+	Mul
+
+} {} {}} C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v {1 {vlog -work work -stats=none C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module addsub_block
+
+Top level modules:
+	addsub_block
+
+} {} {}}

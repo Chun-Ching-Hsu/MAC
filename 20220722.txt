@@ -1,0 +1,42 @@
+2022/07/22
+Vaild 看等下可不可以用 能不能丟到
+1 要保存
+0 可以洗掉
+
+output 因為沒有要送給下個 PE 所以只要看ReadyM
+
+Full
+如果 vaild 都是1 那滿的 無法寫入
+
+Empty 表示沒有新的data可以送
+1 表示沒有data可以送
+
+Send handsharking
+自己buffer 是否有 dataoutvaild
+下個是不是可以收
+上面都成立才能送資料
+
+Data in ready 
+buffer 是否為空能接收 (是否為full)
+
+Rec_handsharking
+自己的buffer是否有空間
+
+# 寫一個 Handsharking
+
+NOP
+判斷傳送到MAC是否有效
+1 不能運算無效
+0 有效 要開始運算
+HPM個 對於運算單元，讀到哪了
+1 表示都好了
+
+HPP 給next PE
+
+HPM 給 MAC 的
+
+TP 各自要寫入哪個buffer 
+
+rec data 有handsharking 就吃進去
+
+

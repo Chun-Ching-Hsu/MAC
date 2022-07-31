@@ -1,4 +1,4 @@
-// 新增  加法 乘法 pipeline
+
 module PE
     #(  parameter DataInWidth = 8,
         parameter DataOutWidth = 16,
@@ -213,8 +213,7 @@ module PE
 		.clock(clk),
 		.dataa(W_DataOut2),
 		.datab(I_DataOut2),
-		.result(mul_result)
-    );
+		.result(mul_result));
 	// 2 stages	
 	Add add_pipeline(
 		.aclr(reset),
@@ -222,15 +221,13 @@ module PE
 		.clock(clk),
 		.dataa(mul_result[DataInWidth-1:0]),
 		.datab(O_DataOut2),
-		.result(O_DataOut)
-    );
+		.result(O_DataOut));
 
     NOPPipeline noppipeline(
         .clk(clk), 
         .sclr(reset), 
         .NOPIn(NOP), 
-        .NOPOut(O_NOPOut)
-    );	
+        .NOPOut(O_NOPOut));	
 
     assign ReadyM = W_ReadyM & I_ReadyM & O_ReadyM;
     

@@ -1,0 +1,52 @@
+# do MAC.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:39:35 on Jul 26,2022
+# vlog -work work MAC.vo 
+# -- Compiling module Mul
+# 
+# Top level modules:
+# 	Mul
+# End time: 14:39:35 on Jul 26,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 14:39:35 on Jul 26,2022
+# vlog -work work Waveform.vwf.vt 
+# -- Compiling module Mul_vlg_vec_tst
+# 
+# Top level modules:
+# 	Mul_vlg_vec_tst
+# End time: 14:39:36 on Jul 26,2022, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.multest3_vlg_vec_tst 
+# Start time: 14:39:36 on Jul 26,2022
+# Loading work.multest3_vlg_vec_tst
+# Loading work.multest3
+# Loading cyclonev_ver.cyclonev_io_obuf
+# Loading cyclonev_ver.cyclonev_io_ibuf
+# Loading cyclonev_ver.cyclonev_clkena
+# Loading cyclonev_ver.cyclonev_mac
+# Loading cyclonev_ver.cyclonev_lcell_comb
+# Loading altera_ver.dffeas
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (1) does not match connection size (26) for port 'az'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4326).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (16) does not match connection size (18) for port 'bx'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4328).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (16) does not match connection size (19) for port 'by'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4329).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (1) does not match connection size (18) for port 'bz'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4330).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (8) does not match connection size (27) for port 'scanin'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4332).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) MAC.vo(725): [PCDPC] - Port size (64) does not match connection size (1) for port 'chainin'. The port definition is at: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v(4333).
+#    Time: 0 ps  Iteration: 0  Instance: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac  File: /build/swbuild/SJ/nightly/18.0std/614/l64/work/modelsim/eda/sim_lib/cyclonev_atoms.v
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 ps  Iteration: 0  Protected: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac /inst/<protected> File: nofile
+# ** Warning: (vsim-3015) <protected>(<protected>): [PCDPC] - Port size (<protected>) does not match connection size (<protected>) for <protected>.<protected>
+#    Time: 0 ps  Iteration: 0  Protected: /multest3_vlg_vec_tst/i1/\lpm_mult_component|auto_generated|Mult0~mac /inst/<protected> File: nofile
+# Loading altera_ver.PRIM_GDFF_LOW
+# after#25
+# ** Note: $finish    : Waveform.vwf.vt(50)
+#    Time: 1 us  Iteration: 0  Instance: /multest3_vlg_vec_tst
+# End time: 14:39:36 on Jul 26,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 8

@@ -1,0 +1,26 @@
+//Multiply + Add = 5 + 2 = 7 Cycles latency
+module NOPPipeline
+	#(parameter stages = 7)
+	(clk, sclr, NOPIn, NOPOut);
+	input clk, sclr;
+	input NOPIn;
+	output NOPOut;
+	
+	reg [stages-1] NOPreg;
+	
+	always@(posedge clk) begin
+		if(sclr) begin
+			for(index = 0; index < stages; index = index + 1) begin: clearRegs
+				NOPreg[index] <= 0;
+			end
+		end
+		else begin
+			for(index = 0; index < stages - 1; index = index + 1) begin: Tranmit
+				NOPreg[index+1] <= NOPreg[index];
+			end		
+		end
+	end
+	
+	assign NOPOut = NOPreg[stages-1];
+	
+endmodule

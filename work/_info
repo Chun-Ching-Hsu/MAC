@@ -1,0 +1,1516 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/18.0/FIFO
+vAdd
+Z0 !s110 1658818415
+!i10b 1
+!s100 ;lVUadXIWCzj:CU3PU3Z40
+IWX8hQ?8KjicEgHhWYFMc^0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/intelFPGA_lite/18.0/MAC
+w1658818047
+8C:/intelFPGA_lite/18.0/MAC/Add.v
+FC:/intelFPGA_lite/18.0/MAC/Add.v
+L0 2
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1658818415.000000
+!s107 C:/intelFPGA_lite/18.0/MAC/Add.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Add.v|
+!i113 1
+Z5 o-work work
+Z6 tCvgOpt 0
+n@add
+vAdd_tb
+R0
+!i10b 1
+!s100 d4>N93NCi<9`fkHSiiIGZ2
+IOEdV5:WMDJLGnQmLH<?EW0
+R1
+R2
+w1658817770
+8C:/intelFPGA_lite/18.0/MAC/Add_tb.v
+FC:/intelFPGA_lite/18.0/MAC/Add_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/Add_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Add_tb.v|
+!i113 1
+R5
+R6
+n@add_tb
+vaddsub_block
+R0
+!i10b 1
+!s100 =iOaP4kK]7E=?JV<KZ1HQ1
+IAfjN2P7X20YUSLZ>S7A4N0
+R1
+R2
+Z7 w1524625466
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v
+Z8 L0 14
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/addsub_block.v|
+!i113 1
+R5
+R6
+valt3pram
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 gf9Vc7i1_7hVccW3FSgIO2
+ISI_XZa2nb13D1MJgc>6Rm1
+R2
+Z9 w1524625474
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt3pram.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt3pram.v
+R8
+R3
+Z10 !s108 1658761609.000000
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt3pram.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt3pram.v|
+!i113 1
+R5
+R6
+valt_bidir_buf
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 ^a`Oi@3?^?T9G:5]92DIJ2
+I;0akalKgI9o8jS]cjiFe90
+R2
+Z11 w1524625471
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_buf.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_buf.v
+Z12 L0 19
+R3
+Z13 !s108 1658745996.000000
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_buf.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_buf.v|
+!i113 1
+R5
+R6
+valt_bidir_diff
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 O10J8GUMobFG>2_3Ja4H22
+IJC0S?dT:^goZZN79e??a[0
+R2
+R11
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_diff.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_diff.v
+R12
+R3
+R13
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_diff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_bidir_diff.v|
+!i113 1
+R5
+R6
+valt_inbuf
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 kJi:o:k737QSlY^i99OE12
+IPnPaEmj@9[X82CHJ6QB9z3
+R2
+R11
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf.v
+R12
+R3
+R13
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf.v|
+!i113 1
+R5
+R6
+valt_inbuf_diff
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 0a@Pz^E^jjKT2Om;0;oUO2
+I2`I[lHQmT0>TTTh0[EAMX2
+R2
+R11
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf_diff.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf_diff.v
+R12
+R3
+R13
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf_diff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_inbuf_diff.v|
+!i113 1
+R5
+R6
+valt_iobuf
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 Vzjl]Vm^nb;JUS24`>=A^3
+I[YF6?34B^UK:WAgCJfbV_1
+R2
+Z14 w1524625472
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf.v
+R12
+R3
+R13
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf.v|
+!i113 1
+R5
+R6
+valt_iobuf_diff
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 XaYze`kM46PKkXcC]bDGM0
+IbO^UOeBQ;9>0RHKn:[IEX2
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf_diff.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf_diff.v
+R12
+R3
+Z15 !s108 1658745997.000000
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf_diff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_iobuf_diff.v|
+!i113 1
+R5
+R6
+valt_outbuf
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 9Acn`WUhzR4OXc0ojik>k3
+I=XVC1fGmfl`Q4<NH`T<GK1
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf.v
+R12
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf.v|
+!i113 1
+R5
+R6
+valt_outbuf_diff
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 o>a65mE1_dE<J;OSn>H:U0
+IcNXc2eGT0Vci5QJ2k:I_a3
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_diff.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_diff.v
+R12
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_diff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_diff.v|
+!i113 1
+R5
+R6
+valt_outbuf_tri
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 RT[^g0aT1N;]V:GPkfV[V2
+Ifzk]cETl52V>c3eSNji_43
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri.v
+Z16 L0 20
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri.v|
+!i113 1
+R5
+R6
+valt_outbuf_tri_diff
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 AgB@MQoXo<nOLI;_2IlX:2
+II`KH7CHoCR3P2O50S:d4B3
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri_diff.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri_diff.v
+R16
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri_diff.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/alt_outbuf_tri_diff.v|
+!i113 1
+R5
+R6
+valtaccumulate
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 N:bomLXJ9@oIL?S5O5?o[0
+IFQ?ZgCaHk8V]i><;X4@Bo0
+R2
+R9
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altaccumulate.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altaccumulate.v
+R8
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altaccumulate.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altaccumulate.v|
+!i113 1
+R5
+R6
+valtddio_bidir
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 GkRPk4JekY5Yg^U8QJ1ZC1
+I]iYSZFS2k5O>RgYZVMzR10
+R2
+Z17 w1524625469
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_bidir.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_bidir.v
+Z18 L0 18
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_bidir.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_bidir.v|
+!i113 1
+R5
+R6
+valtddio_in
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 CRI_XlcJI0oi94U^E4SGf0
+I885O`<;d[gnX_fYN2Aai61
+R2
+R17
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_in.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_in.v
+R18
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_in.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_in.v|
+!i113 1
+R5
+R6
+valtddio_out
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 @_Tdji<TE^55:OKmRfD;F0
+IQB0mVo3We5:LA1cjkO[1S1
+R2
+Z19 w1524625535
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_out.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_out.v
+Z20 FC:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i
+R8
+R3
+R15
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_out.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altddio_out.v|
+!i113 1
+R5
+R6
+valtlvds_rx
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 BH?JOE9V87m]m3ZTNORkA0
+I95zI@9^NBMIK@oDJjhW921
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_rx.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_rx.v
+R20
+R8
+R3
+R15
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_rx.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_rx.v|
+!i113 1
+R5
+R6
+valtlvds_tx
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 RCKHKEa@iFBgGI>>D:IO<2
+IYi[1HLf83]1@OfCj;W7iZ2
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_tx.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_tx.v
+R20
+R8
+R3
+R15
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_tx.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altlvds_tx.v|
+!i113 1
+R5
+R6
+valtmult_accum
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 fDgnZX^lO^?;`7SBLWWaj3
+I:?;UfhAJmk;=o:VGcUckk1
+R2
+R17
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_accum.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_accum.v
+L0 41
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_accum.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_accum.v|
+!i113 1
+R5
+R6
+valtmult_add
+R0
+!i10b 1
+!s100 lPQFfl3[X4l1bZfhI3XjI3
+I2J>dTQSe99cc1:l?NTKhj1
+R1
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v
+R20
+L0 23
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altmult_add.v|
+!i113 1
+R5
+R6
+valtparallel_flash_loader
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 J<HOEZPORXDX0Dj1F4CgM2
+ICFJO;;YZlKQfI72b>d36D0
+R2
+R17
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altparallel_flash_loader.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altparallel_flash_loader.v
+R8
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altparallel_flash_loader.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altparallel_flash_loader.v|
+!i113 1
+R5
+R6
+valtpll
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 4gI?6:EHPGnDEhm9<dL<G1
+IDY13J^:N:FeU;h=hY<N8A0
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altpll.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altpll.v
+R20
+R12
+R3
+R15
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altpll.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altpll.v|
+!i113 1
+R5
+R6
+valtserial_flash_loader
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 9d`?DeMliAE]3Y]N:YcXC1
+I1VXiQMKSPXHj:Xf9LJbEz2
+R2
+R17
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altserial_flash_loader.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altserial_flash_loader.v
+R8
+R3
+R15
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altserial_flash_loader.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altserial_flash_loader.v|
+!i113 1
+R5
+R6
+valtshift_taps
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 K`@HSAGNLz_c;0VOB]T`O1
+ICCFJ8andSF;I^7IZ?K`S<1
+R2
+Z21 w1524625475
+Z22 8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altshift_taps.v
+Z23 FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altshift_taps.v
+Z24 L0 17
+R3
+R15
+Z25 !s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altshift_taps.v|
+Z26 !s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altshift_taps.v|
+!i113 1
+R5
+R6
+valtsource_probe
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 cXZ7^?3:``mO5eYofRkDZ0
+IR`d>W9QN>n6WVid69n@YV1
+R2
+Z27 w1524625470
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsource_probe.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsource_probe.v
+R8
+R3
+Z28 !s108 1658745998.000000
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsource_probe.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsource_probe.v|
+!i113 1
+R5
+R6
+valtsqrt
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 GXb=lzS[DO[SVVST5G4>z3
+IIoI[I6BW=cAHfCn_meQD71
+R2
+R21
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsqrt.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsqrt.v
+R8
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsqrt.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsqrt.v|
+!i113 1
+R5
+R6
+valtsquare
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 `J`TSzFVNfZm8SY6`ZILQ3
+IjZHP`c=Xd5N[O@`XoUCD13
+R2
+R21
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsquare.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsquare.v
+R18
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsquare.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsquare.v|
+!i113 1
+R5
+R6
+valtstratixii_oct
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 6@SBiH0CgLd^CRgH5dRQm3
+IV7Fm^Z:T880WI[PcnS0Z_2
+R2
+R27
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altstratixii_oct.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altstratixii_oct.v
+R8
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altstratixii_oct.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altstratixii_oct.v|
+!i113 1
+R5
+R6
+valtsyncram
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 oG:A3Aki?028R9GUnEA9H2
+I0H?9EWRYJB^P>ebC8IoC01
+R2
+Z29 w1524625476
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsyncram.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsyncram.v
+R8
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsyncram.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/altsyncram.v|
+!i113 1
+R5
+R6
+vBuffer
+Z30 !s110 1658818414
+!i10b 1
+!s100 zn`<C?SkH8ACP0oJDQkaK3
+ISj^Gck[[dMYi>e03N;?ha1
+R1
+R2
+w1658715836
+8C:/intelFPGA_lite/18.0/MAC/Buffer.v
+FC:/intelFPGA_lite/18.0/MAC/Buffer.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z31 !s108 1658818414.000000
+!s107 C:/intelFPGA_lite/18.0/MAC/Buffer.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Buffer.v|
+!i113 1
+R5
+R6
+n@buffer
+vcarry
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 iV0DzNOX[1EfAN:T8D4RT3
+I>BKzCoKd=>G<:eZ1a:2>O2
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry.v
+Z32 L0 15
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry.v|
+!i113 1
+R5
+R6
+vcarry_sum
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 kg]4h2^kS^mS<RBfGIK]T1
+IeaZS8obUnA6JJCBm]j^I`0
+R2
+Z33 w1524625473
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry_sum.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry_sum.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry_sum.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/carry_sum.v|
+!i113 1
+R5
+R6
+vcascade
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 ^G6JVE@PYHb965bB;E7Rl1
+ID]QSX^9Uf[TR=?6oa1mGb3
+R2
+R14
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/cascade.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/cascade.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/cascade.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/cascade.v|
+!i113 1
+R5
+R6
+vdcfifo
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 __jVYOQS7>00ZU:dMNX]Z0
+IK:dHhKR<aTeZ``aaQ`B1@0
+R2
+R29
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo.v
+R8
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo.v|
+!i113 1
+R5
+R6
+vdcfifo_mixed_widths
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 VKZ19:FTGM6M?WZ:BND^S0
+I^2hmJ`EXkOeSBHWL=F35^3
+R2
+R29
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo_mixed_widths.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo_mixed_widths.v
+R24
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo_mixed_widths.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dcfifo_mixed_widths.v|
+!i113 1
+R5
+R6
+vdff_bus
+R0
+!i10b 1
+!s100 e[R1QaH5^eaizfFVLJh9F0
+I2F6b[OaERhRQG4L<f:W]S0
+R1
+R2
+R7
+Z34 8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v
+Z35 FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v
+L0 69
+R3
+r1
+!s85 0
+31
+R4
+Z36 !s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v|
+Z37 !s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/pipeline_internal_fv.v|
+!i113 1
+R5
+R6
+vdffeas
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 lKdk3Cg03odz^[4=OCMD23
+Ii;`4?MZ:BU_9GM_Xz;dg:2
+R2
+w1524625460
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffeas.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffeas.v
+R12
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffeas.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffeas.v|
+!i113 1
+R5
+R6
+Udffep
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 G^m?31ELN:0Pz=:hOS7JQ2
+Ic76omADS21mXEA:S:c[PV0
+R2
+R7
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffep.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffep.v
+R18
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffep.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffep.v|
+!i113 1
+R5
+R6
+Udffp
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 ]jC?De@ooeJ5E7i_eTjFS1
+IN4?XlWSSRmA6<QWL1FKWo1
+R2
+R7
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffp.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffp.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffp.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/dffp.v|
+!i113 1
+R5
+R6
+vexp
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 55GdgoS4B]>Jb=zEnzgm@1
+I?[Ia3AiZEz60]d[n:L4dV1
+R2
+R33
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/exp.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/exp.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/exp.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/exp.v|
+!i113 1
+R5
+R6
+vflvds_rx
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 C@NfzgGzV69[FZib6J9@^0
+I7gUR@b`N1;ZjO]3?YU4Sk2
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_rx.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_rx.v
+R20
+L0 16
+R3
+R28
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_rx.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_rx.v|
+!i113 1
+R5
+R6
+vflvds_tx
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 VWW<2ACd?o4^9`n=]=kdb0
+IcV:`:fzV7=g]4z1UZ?3on0
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_tx.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_tx.v
+R20
+R8
+R3
+R28
+!s107 C:\intelFPGA_lite\18.0\quartus\eda\fv_lib\verilog\altera_mf_macros.i|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_tx.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/flvds_tx.v|
+!i113 1
+R5
+R6
+vglobal
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 zDFoZND^VS>4h2K@:Z2Z73
+I<02?Ai1dO13_i?i:E`FgB2
+R2
+R33
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/global.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/global.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/global.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/global.v|
+!i113 1
+R5
+R6
+vlatch
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 bR^h5P;z3naez4M9?jWKR0
+Ia>=>QU4b<;P<Qjcch:_E52
+R2
+R33
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/latch.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/latch.v
+R32
+R3
+R10
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/latch.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/latch.v|
+!i113 1
+R5
+R6
+vlcell
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 0>:T9]oh[J^6UcQUl0C2Q3
+IQo>_<28WoLaD>AzL;ING:2
+R2
+R9
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell.v
+R32
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell.v|
+!i113 1
+R5
+R6
+vlcell_lut3
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 @VTWXUN<^MkRzf^Uc3Ndl0
+IGMcWSfeYG]6ecGz4Fd74>2
+R2
+R7
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut3.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut3.v
+Z38 L0 21
+R3
+R28
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut3.v|
+!i113 1
+R5
+R6
+vlcell_lut4
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 GPkR[@nbPbYLc<zR61fJ40
+If0zBTS629VD2HNKEkE2WA1
+R2
+R7
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut4.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut4.v
+R38
+R3
+Z39 !s108 1658745999.000000
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut4.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lcell_lut4.v|
+!i113 1
+R5
+R6
+vlpm_abs
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 TX=nMU=9`Q1<jiDUCnB>d0
+IzTD6JYJHJSk:BBcillh]W3
+R2
+w1524625467
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_abs.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_abs.v
+R18
+R3
+R39
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_abs.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_abs.v|
+!i113 1
+R5
+R6
+vlpm_add_sub
+R0
+!i10b 1
+!s100 379oe89m2=heO0K[0RJKK3
+IfY=2;J<eP<T1_6zVFBJO^1
+R1
+R2
+Z40 w1524625468
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v
+R18
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_add_sub.v|
+!i113 1
+R5
+R6
+vlpm_mult
+R0
+!i10b 1
+!s100 cFe1;LnKczSH2Eg>5k_1@1
+IhQ]k@PlkD[WmRbG2]Lhm70
+R1
+R2
+R40
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v
+R18
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/lpm_mult.v|
+!i113 1
+R5
+R6
+vMAC
+R30
+!i10b 1
+!s100 =Q[UXETH[XI@nZezF4f`11
+IO8>k[fAo6zReeDg:4a4hY2
+R1
+R2
+w1658715936
+8C:/intelFPGA_lite/18.0/MAC/MAC.v
+FC:/intelFPGA_lite/18.0/MAC/MAC.v
+L0 1
+R3
+r1
+!s85 0
+31
+R31
+!s107 C:/intelFPGA_lite/18.0/MAC/MAC.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/MAC.v|
+!i113 1
+R5
+R6
+n@m@a@c
+vMAC_Pipeline
+R0
+!i10b 1
+!s100 iLcB0GO]zeZciHFZl_LjW3
+ICPzCz@FYi[EUVe7CRZo@b3
+R1
+R2
+w1658818368
+8C:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v
+FC:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/MAC_Pipeline.v|
+!i113 1
+R5
+R6
+n@m@a@c_@pipeline
+vMAC_tb
+R0
+!i10b 1
+!s100 LCCZ[g]3e8FA_5U4aLABH1
+Io9a?`e>WcYil_<Q=DjP1k1
+R1
+R2
+w1658818410
+8C:/intelFPGA_lite/18.0/MAC/MAC_tb.v
+FC:/intelFPGA_lite/18.0/MAC/MAC_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/MAC_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/MAC_tb.v|
+!i113 1
+R5
+R6
+n@m@a@c_tb
+vMul
+R0
+!i10b 1
+!s100 jN8BMWg;4I;Qj2j_Y=JRR3
+I@7IZz8n0SK[0a<@8h5LCJ2
+R1
+R2
+w1658776595
+8C:/intelFPGA_lite/18.0/MAC/Mul.v
+FC:/intelFPGA_lite/18.0/MAC/Mul.v
+L0 38
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/Mul.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Mul.v|
+!i113 1
+R5
+R6
+n@mul
+vmult_block
+R0
+!i10b 1
+!s100 oGVVY=VDfWC?1ZD@MeUhU2
+Ilidm6R]G0[[dfX5H`jZ>G2
+R1
+R2
+R7
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v
+R8
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/mult_block.v|
+!i113 1
+R5
+R6
+vmultest
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 <N[O_7QhPedi9=KShXb>_1
+I1gFQ4G=TXAEmIK9ggjgY:1
+R2
+w1658759746
+8C:/intelFPGA_lite/18.0/MAC/multest.v
+FC:/intelFPGA_lite/18.0/MAC/multest.v
+L0 35
+R3
+R10
+!s107 C:/intelFPGA_lite/18.0/MAC/multest.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/multest.v|
+!i113 1
+R5
+R6
+vmultest2
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 4<_AE=78_OdKRWn:QD7;V0
+IQ]m91Hi]3>V1e;9ac@Pb@3
+R2
+w1658759822
+8C:/intelFPGA_lite/18.0/MAC/multest2_bb.v
+FC:/intelFPGA_lite/18.0/MAC/multest2_bb.v
+L0 34
+R3
+R10
+!s107 C:/intelFPGA_lite/18.0/MAC/multest2_bb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/multest2_bb.v|
+!i113 1
+R5
+R6
+vmultest3
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 Y6HLAD9>AS4N1eQz9MmBS3
+IFQl1hDn49WT_jK?El^Y0;3
+R2
+w1658761251
+8C:/intelFPGA_lite/18.0/MAC/multest3.v
+FC:/intelFPGA_lite/18.0/MAC/multest3.v
+L0 37
+R3
+R10
+!s107 C:/intelFPGA_lite/18.0/MAC/multest3.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/multest3.v|
+!i113 1
+R5
+R6
+vmultiply
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 c1M<dIfiKidhk_:anV_S10
+I:jDXjUVQWlG3^:4j`k7U23
+R2
+w1658745981
+8C:/intelFPGA_lite/18.0/MAC/multiply.v
+FC:/intelFPGA_lite/18.0/MAC/multiply.v
+L0 39
+R3
+!s108 1658761608.000000
+!s107 C:/intelFPGA_lite/18.0/MAC/multiply.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/multiply.v|
+!i113 1
+R5
+R6
+vmultiply_tb
+R0
+!i10b 1
+!s100 A0MA^`bGWHn02cMo1zzzZ2
+Il;LWAK>EHUDThbA=e?S:=1
+R1
+R2
+w1658776814
+8C:/intelFPGA_lite/18.0/MAC/multiply_tb.v
+FC:/intelFPGA_lite/18.0/MAC/multiply_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/multiply_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/multiply_tb.v|
+!i113 1
+R5
+R6
+vNOPPipeline
+R0
+!i10b 1
+!s100 K94OM_7Z@inoP]9TWo_Y32
+IJRLQ2@;3a]GnnH8;5]0iV2
+R1
+R2
+w1658779086
+8C:/intelFPGA_lite/18.0/MAC/NOPPipeline.v
+FC:/intelFPGA_lite/18.0/MAC/NOPPipeline.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/NOPPipeline.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/NOPPipeline.v|
+!i113 1
+R5
+R6
+n@n@o@p@pipeline
+vNOPPipeline_tb
+R0
+!i10b 1
+!s100 80^UXHKz`V8@ZdjJmN;E90
+I0a2CiL3@JoCd1=[RYiQ4X1
+R1
+R2
+w1658778336
+8C:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v
+FC:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/NOPPipeline_tb.v|
+!i113 1
+R5
+R6
+n@n@o@p@pipeline_tb
+vOutputDataPipeline
+R0
+!i10b 1
+!s100 ;?>Xc?PEfVART_RMI>NOX3
+I^4Dcg0nVQ6YL;^[RVH`=S1
+R1
+R2
+w1658779027
+8C:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v
+FC:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/OutputDataPipeline.v|
+!i113 1
+R5
+R6
+n@output@data@pipeline
+vPE
+R30
+!i10b 1
+!s100 9]CKJAWRh9KiC`44N?mFZ0
+IX>1WOO0i^^Hd2CjbR_CY>0
+R1
+R2
+w1658747052
+8C:\intelFPGA_lite\18.0\MAC\PE.v
+FC:\intelFPGA_lite\18.0\MAC\PE.v
+L0 2
+R3
+r1
+!s85 0
+31
+R31
+!s107 C:\intelFPGA_lite\18.0\MAC\PE.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\intelFPGA_lite\18.0\MAC\PE.v|
+!i113 1
+R5
+R6
+n@p@e
+vPE_tb
+R30
+!i10b 1
+!s100 Jz^2F4LGQA2Ta]]c2bDNA1
+IfG0O3B`P8Yo_DY5fB;eUP2
+R1
+R2
+w1658747122
+8C:/intelFPGA_lite/18.0/MAC/PE_tb.v
+FC:/intelFPGA_lite/18.0/MAC/PE_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R31
+!s107 C:/intelFPGA_lite/18.0/MAC/PE_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/PE_tb.v|
+!i113 1
+R5
+R6
+n@p@e_tb
+vpipeline_internal_fv
+R0
+!i10b 1
+!s100 ell;[_3`jcDcS@WFbfflf2
+I;6bEe0jPY7H<bLaZ3Z?K62
+R1
+R2
+R7
+R34
+R35
+R16
+R3
+r1
+!s85 0
+31
+R4
+R36
+R37
+!i113 1
+R5
+R6
+vPointer
+R0
+!i10b 1
+!s100 IQXdV]JUDK0]d[Fb@ZK@_0
+I;@@RkDPP5OXQ9:h:7_FbA2
+R1
+R2
+w1658715486
+8C:/intelFPGA_lite/18.0/MAC/Pointer.v
+FC:/intelFPGA_lite/18.0/MAC/Pointer.v
+L0 1
+R3
+r1
+!s85 0
+31
+R31
+!s107 C:/intelFPGA_lite/18.0/MAC/Pointer.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Pointer.v|
+!i113 1
+R5
+R6
+n@pointer
+vReady
+R0
+!i10b 1
+!s100 Hzh29He3WFl2EjM3I^OTX0
+I?8fDR=LZfE3:V`ffP:bW=0
+R1
+R2
+w1658688858
+8C:/intelFPGA_lite/18.0/MAC/Ready.v
+FC:/intelFPGA_lite/18.0/MAC/Ready.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/intelFPGA_lite/18.0/MAC/Ready.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Ready.v|
+!i113 1
+R5
+R6
+n@ready
+vRound
+R30
+!i10b 1
+!s100 XeX3hDE0[2>=EHI57H@QE0
+IcI]`O4^<?>47NdZiG9BlR1
+R1
+R2
+w1658715478
+8C:/intelFPGA_lite/18.0/MAC/Round.v
+FC:/intelFPGA_lite/18.0/MAC/Round.v
+L0 1
+R3
+r1
+!s85 0
+31
+R31
+!s107 C:/intelFPGA_lite/18.0/MAC/Round.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/MAC/Round.v|
+!i113 1
+R5
+R6
+n@round
+vshiftreg
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 dRVDmjDQ^Z@=iU2j^Rlg^2
+I2=FWclTUnLE[?UjMim6GH3
+R2
+R21
+R22
+R23
+L0 78
+R3
+R15
+R25
+R26
+!i113 1
+R5
+R6
+vTRI1
+!i10b 1
+R1
+r1
+!s85 0
+31
+!s100 b93VbNQF3XHWQF[QKE_f[1
+IA3VK8[6?JJe2XCmFdC[F20
+R2
+R19
+8C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/TRI1.v
+FC:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/TRI1.v
+R8
+R3
+R13
+!s107 C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/TRI1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/intelFPGA_lite/18.0/quartus/eda/fv_lib/verilog/TRI1.v|
+!i113 1
+R5
+R6
+n@t@r@i1

@@ -4,14 +4,14 @@ module Ready
         parameter PseudoBufferWidth = 3,
         parameter PseudoBufferSize = 8)
     (TP,HP,Round,Ready);
-    input [BufferWidth-1] TP,HP;
+    input [BufferWidth-1:0] TP,HP;
     input Round;
 
     wire PseudoTP = Round ? TP+4 : TP ;
     wire [PseudoBufferWidth-1:0] Distance = PseudoTP - HP;
-    reg [BufferSize-1] TmpReady;
+    reg [BufferSize-1:0] TmpReady;
     
-    output [BufferSize-1] Ready;
+    output [BufferSize-1:0] Ready;
     
     always @(*)begin
         case(Distance)
