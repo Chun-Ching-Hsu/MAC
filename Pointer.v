@@ -1,15 +1,14 @@
 module Pointer
-    #(parameter BufferWidth = 2)
-    (clk, reset, EN, Pointer);
-    input clk;
-    input reset;
+    #(  parameter BufferWidth = 2)
+    (clk, rst, EN, Pointer);
+    input clk, rst;
     input EN;
 
     output reg [BufferWidth-1:0] Pointer;
 
-    always@(posedge clk)begin
+    always@(posedge clk, posedge rst)begin
         // 學姊增加了reset 功能 20220726
-        if(reset) begin
+        if(rst) begin
             Pointer <= 0;
         end
         else if(EN) begin

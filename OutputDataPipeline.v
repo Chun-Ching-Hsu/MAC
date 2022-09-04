@@ -1,9 +1,9 @@
 module OutputDataPipeline   
     #(  parameter DataOutputWidth = 8,
         parameter Stages = 5)
-    (clk, sclr, DataIn, DataOut);
+    (clk, aclr, DataIn, DataOut);
 
-    input clk, sclr;
+    input clk, aclr;
     input [DataOutputWidth-1:0] DataIn;
     output [DataOutputWidth-1:0] DataOut;
 
@@ -11,8 +11,8 @@ module OutputDataPipeline
 	
 	integer index;
 
-	always@(posedge clk) begin
-		if(sclr) begin
+	always@(posedge clk, posedge aclr) begin
+		if(aclr) begin
 			for(index = 0; index < Stages + 1; index = index + 1) begin: clearRegs
 				DataRegs[index] <= 0;
 			end

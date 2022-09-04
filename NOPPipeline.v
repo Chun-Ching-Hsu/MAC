@@ -1,8 +1,8 @@
 //Multiply + Add = 5 + 2 = 7 Cycles latency
 module NOPPipeline
 	#(parameter stages = 7)
-	(clk, sclr, NOPIn, NOPOut);
-	input clk, sclr;
+	(clk, aclr, NOPIn, NOPOut);
+	input clk, aclr;
 	input NOPIn;
 	output NOPOut;
 	
@@ -10,8 +10,8 @@ module NOPPipeline
 	
 	integer index;
 	
-	always@(posedge clk) begin
-		if(sclr) begin
+	always@(posedge clk, posedge aclr) begin
+		if(aclr) begin
 			for(index = 0; index < stages + 1; index = index + 1) begin: clearRegs
 				NOPreg[index] <= 1;
 			end

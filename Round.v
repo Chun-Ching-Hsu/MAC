@@ -1,16 +1,19 @@
-module Round(TP, HP, Round, Rec_Handshanking, Send_Handshaking, clk, reset);
-    input clk, reset, Rec_Handshanking, Send_Handshaking;
-    input [1:0] TP, HP;
+module Round
+    #(  parameter BufferWidth = 2)
+    (clk, rst, Push, Pop, W_Addr, R_Addr, Round);
+
+    input clk, rst, Push, Pop;
+    input [BufferWidth-1:0] W_Addr, R_Addr;
     output reg Round;
-    always @(posedge clk)
+    always @(posedge clk , posedge rst)
     begin
-        if(reset) begin
+        if(rst) begin
             Round <= 1'b 0;
         end
-        else if(TP == 2'b 11  && Rec_Handshanking) begin
+        else if(W_Addr == 2'b 11  && Push) begin
             Round <= 1'b 1;
         end
-        else if (HP == 2'b 11 && Send_Handshaking) begin
+        else if (R_Addr == 2'b 11 && Pop) begin
             Round <= 1'b 0 ;
         end
         else begin 

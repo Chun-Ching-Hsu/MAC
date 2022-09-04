@@ -3,12 +3,12 @@ module Ready
         parameter BufferSize = 4,
         parameter PseudoBufferWidth = 3,
         parameter PseudoBufferSize = 8)
-    (TP,HP,Round,Ready);
-    input [BufferWidth-1:0] TP,HP;
+    (W_Addr, R_Addr, Round, Ready);
+    input [BufferWidth-1:0] W_Addr, R_Addr;
     input Round;
 
-    wire PseudoTP = Round ? TP+4 : TP ;
-    wire [PseudoBufferWidth-1:0] Distance = PseudoTP - HP;
+    wire Pseudo_W_Addr = Round ? W_Addr+4 : W_Addr ;
+    wire [PseudoBufferWidth-1:0] Distance = Pseudo_W_Addr - R_Addr;
     reg [BufferSize-1:0] TmpReady;
     
     output [BufferSize-1:0] Ready;
@@ -23,5 +23,5 @@ module Ready
             default : TmpReady = 4'b 0000;
         endcase
     end
-    assign Ready = TmpReady << HP ;
+    assign Ready = TmpReady << R_Addr ;
 endmodule
