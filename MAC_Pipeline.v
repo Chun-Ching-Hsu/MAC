@@ -1,39 +1,42 @@
 module MAC_Pipeline
-    #(  parameter DataInWidth = 32,
-        parameter DataOutWidth = 64,
-        parameter MUL_Pipeline_Stages = 5)
-    ( clk, rst, NOPIn, NOPOut, W_Data, I_Data, O_Data, DataOut);
+    #(  parameter DataWidth = 32,
+        parameter MUL_Pipeline_Stages = 5,
+        parameter ADD_Pipeline_Stages = 7,
+        parameter Pipeline_Stages = MUL_Pipeline_Stages + ADD_Pipeline_Stages)
+    ( clk, rst, NOPIn, NOPOut, W_Data, I_Data, O_Data, DataOut, MulResult, O_Data_Pipeline_Out);
     input clk, rst, NOPIn;
-    input [DataInWidth-1:0] W_Data, I_Data, O_Data;
+    input [DataWidth-1:0] W_Data, I_Data, O_Data;
         
     output NOPOut;
-    output [DataInWidth-1:0] DataOut;
+    output [DataWidth-1:0] DataOut;
     
-    wire [DataOutWidth-1:0] MulResult;
-    wire [DataInWidth-1:0] O_Data_Pipeline_Out;
-    //32-bit mul
-    Mul MulPipelineUnit(
+    output [DataWidth-1:0] MulResult;
+    output [DataWidth-1:0] O_Data_Pipeline_Out;
+    //32-bit FP mul (5 Stages)
+    FP_MUL FP_MulPipelineUnit(
         .aclr(rst),
         .clock(clk),
         .dataa(W_Data),
         .datab(I_Data),
         .result(MulResult));
-    //32-bit add
-    Add AddUnit(
-        .dataa(O_Data_Pipeline_Out),
-        .datab(MulResult[DataInWidth-1:0]),
+    //32-bit FP add (7 Stages)
+    FP_ADD FP_AddUnit(
+        .aclr(rst),
+        .clock(clk),
+        .dataa(MulResult),
+        .datab(O_Data_Pipeline_Out),
         .result(DataOut));
 
-    NOPPipeline #(.stages(MUL_Pipeline_Stages)) NOPPipelineUnit
+    NOPPipeline #(.Stages(Pipeline_Stages)) NOPPipelineUnit
         (.clk(clk), 
         .aclr(rst),
         .NOPIn(NOPIn), 
         .NOPOut(NOPOut));
 
-    OutputDataPipeline #(.DataOutputWidth(DataOutWidth), .Stages(MUL_Pipeline_Stages)) OutputDataPipelineUnit
-        (.clk(clk), 
+    OutputDataPipeline #(.DataWidth(DataWidth), .Stages(MUL_Pipeline_Stages)) OutputDataPipelineUnit
+        (.clk(clk),
         .aclr(rst), 
-        .DataIn(O_Data), 
+        .DataIn(O_Data),
         .DataOut(O_Data_Pipeline_Out));
 
 endmodule

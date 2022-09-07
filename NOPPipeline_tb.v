@@ -1,19 +1,20 @@
-`timescale 100ns/100ns
-module NOPPipeline_tb();
+`timescale 1ps/1ps
+module NOPPipeline_tb
+    #(parameter Stages = 7)();
 
-	reg clk, sclr;
+	reg clk, aclr;
 	reg NOPIn;
 	wire NOPOut;
 
-	NOPPipeline #(.stages(7)) dut (
-        .clk(clk), .sclr(sclr), .NOPIn(NOPIn), .NOPOut(NOPOut));
+	NOPPipeline #(.Stages(Stages)) dut (
+        .clk(clk), .aclr(aclr), .NOPIn(NOPIn), .NOPOut(NOPOut));
 	
     initial begin
         clk = 1;
-        sclr = 1;
+        aclr = 1;
         NOPIn = 1;
-        #2
-        sclr = 0;
+        #1
+        aclr = 0;
         NOPIn = 0;
         #2
         NOPIn = 1;

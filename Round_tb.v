@@ -1,4 +1,4 @@
-`timescale 100ns/100ns
+`timescale 1ps/1ps
 module Round_tb 
     #(  parameter BufferWidth = 4)();
 

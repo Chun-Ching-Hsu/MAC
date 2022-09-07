@@ -19,10 +19,9 @@ module FIFO_Buffer
         wire [BufferSize-1:0] ReadyP;
         wire [BufferSize-1:0] Valid;
 
-
         Buffer #(.DataWidth(DataWidth), .BufferSize(BufferSize), .BufferWidth(BufferWidth))
-            buffer( .clk(clk), .rst(rst), .EN(Push), .W_Addr(W_Addr), .R_Addr1(R_Addr1), .R_Addr2(R_Addr2), .DataIn(DataIn), 
-                    .DataOut1(DataOut1), .DataOut2(DataOut2));
+                buffer( .clk(clk), .aclr(rst), .EN(Push), .DataIn(DataIn), 
+                .DataOut1(DataOut1), .DataOut2(DataOut2), .W_Addr(W_Addr), .R_Addr1(R_Addr1), .R_Addr2(R_Addr2));
 
         Pointer #(.BufferWidth(BufferWidth))
                 TP( .clk(clk), .rst(rst), .EN(Push), .Pointer(W_Addr));
