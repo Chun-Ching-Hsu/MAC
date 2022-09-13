@@ -20,7 +20,7 @@ module FIFO_Buffer2
         wire [BufferSize-1:0] Valid;
 
         Buffer #(.DataWidth(DataWidth), .BufferSize(BufferSize), .BufferWidth(BufferWidth))
-                buffer( .clk(clk), .rst(rst), .EN(Push), .W_Addr(W_Addr), .R_Addr2(R_Addr2), .DataIn(DataIn), 
+                buffer( .clk(clk), .aclr(rst), .EN(Push), .W_Addr(W_Addr), .R_Addr2(R_Addr2), .DataIn(DataIn), 
                         .DataOut1(), .DataOut2(DataOut2));
 
         Pointer #(.BufferWidth(BufferWidth))

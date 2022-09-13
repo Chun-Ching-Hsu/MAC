@@ -16,8 +16,7 @@ module MAC_Pipeline_tb
     MAC_Pipeline #(.DataWidth(DataWidth), .MUL_Pipeline_Stages(MUL_Pipeline_Stages), 
                 .ADD_Pipeline_Stages(ADD_Pipeline_Stages), .Pipeline_Stages(Pipeline_Stages))
     dut (.clk(clk), .rst(rst), .NOPIn(NOPIn), .NOPOut(NOPOut), 
-        .W_Data(W_Data), .I_Data(I_Data), .O_Data(O_Data), .DataOut(DataOut),
-        .MulResult(MulResult), .O_Data_Pipeline_Out(O_Data_Pipeline_Out));
+        .W_Data(W_Data), .I_Data(I_Data), .O_Data(O_Data), .DataOut(DataOut));
     
     initial begin
         clk = 1;

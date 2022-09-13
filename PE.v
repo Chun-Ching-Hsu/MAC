@@ -1,10 +1,11 @@
 
 module PE
-    #(  parameter DataInWidth = 32,
-        parameter DataOutWidth = 64,
+    #(  parameter DataWidth = 32,
         parameter BufferWidth = 2,
         parameter BufferSize = 4,
-        parameter MUL_Pipeline_Stages = 5)
+        parameter MUL_Pipeline_Stages = 5,
+        parameter ADD_Pipeline_Stages = 7,
+        parameter Pipeline_Stages = MUL_Pipeline_Stages + ADD_Pipeline_Stages)
     (   clk, rst,
         W_DataInValid, W_DataInRdy, W_DataIn,
         W_DataOut, W_DataOutValid, W_DataOutRdy,
@@ -13,7 +14,7 @@ module PE
         O_DataInValid, O_DataInRdy, O_DataIn,
         O_DataOut, O_DataOutValid, O_DataOutRdy);
 		  	
-    input [DataInWidth-1:0] W_DataIn, I_DataIn, O_DataIn;
+    input [DataWidth-1:0] W_DataIn, I_DataIn, O_DataIn;
     input W_DataInValid, W_DataOutRdy;
     input I_DataInValid, I_DataOutRdy;
     input O_DataInValid, O_DataOutRdy; //O_DataOutRdy is used to peek the next PE
@@ -34,30 +35,31 @@ module PE
     wire W_Full, I_Full, O_Full;
     wire W_Empty, I_Empty;
 
-    wire [DataInWidth-1:0] W_DataOut2, I_DataOut2, O_DataOut2;
+    wire [DataWidth-1:0] W_DataOut2, I_DataOut2, O_DataOut2;
 
-    output  [DataInWidth-1:0] W_DataOut,I_DataOut;
-    output  [DataInWidth-1:0] O_DataOut;
+    output  [DataWidth-1:0] W_DataOut,I_DataOut;
+    output  [DataWidth-1:0] O_DataOut;
     output  W_DataInRdy,W_DataOutValid;
     output  I_DataInRdy,I_DataOutValid;
     output  O_DataInRdy,O_DataOutValid;
 
     wire NOPIn, NOPOut;
 
-    FIFO_Buffer #(.DataWidth(DataInWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
                     W_Buffer(.clk(clk), .rst(rst), .Pop1(W_Send_Handshaking), .Pop2(~NOPIn), .Push(W_Rec_Handshaking), .DataIn(W_DataIn),
                             .Empty(W_Empty), .Full(W_Full), .ReadyM(W_ReadyM), .DataOut1(W_DataOut), .DataOut2(W_DataOut2));
 
-    FIFO_Buffer #(.DataWidth(DataInWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
                     I_Buffer(.clk(clk), .rst(rst), .Pop1(I_Send_Handshaking), .Pop2(~NOPIn), .Push(I_Rec_Handshaking), .DataIn(I_DataIn),
                             .Empty(I_Empty), .Full(I_Full), .ReadyM(I_ReadyM), .DataOut1(I_DataOut), .DataOut2(I_DataOut2));
 
-    FIFO_Buffer2    #(.DataWidth(DataInWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer2    #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
                     O_Buffer(.clk(clk), .rst(rst), .Pop2(~NOPIn), .Push(O_Rec_Handshaking), .DataIn(O_DataIn),
                             .Full(O_Full), .ReadyM(O_ReadyM), .DataOut2(O_DataOut2));
 
-    MAC_Pipeline    #(.DataInWidth(DataInWidth), .DataOutWidth(DataOutWidth), .MUL_Pipeline_Stages(MUL_Pipeline_Stages))
-                    MAC(.clk(clk), .rst(rst), .NOPIn(NOPIn), .NOPOut(NOPOut), 
+    MAC_Pipeline    #(.DataWidth(DataWidth), .MUL_Pipeline_Stages(MUL_Pipeline_Stages), 
+                        .ADD_Pipeline_Stages(ADD_Pipeline_Stages), .Pipeline_Stages(Pipeline_Stages))
+                    MAC_Unit(.clk(clk), .rst(rst), .NOPIn(NOPIn), .NOPOut(NOPOut), 
                         .W_Data(W_DataOut2), .I_Data(I_DataOut2), .O_Data(O_DataOut2), .DataOut(O_DataOut));
 
     Pointer #(.BufferWidth(BufferWidth))
