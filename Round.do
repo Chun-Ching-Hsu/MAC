@@ -16,7 +16,7 @@ vsim -t ps work.Round_tb
 view wave
 
 add wave -binary /Round_tb/clk
-add wave -binary /Round_tb/rst
+add wave -binary /Round_tb/aclr
 add wave -binary /Round_tb/Push
 add wave -binary /Round_tb/Pop
 add wave -decimal /Round_tb/W_Addr

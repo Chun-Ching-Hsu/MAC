@@ -1,13 +1,13 @@
 module Round
     #(  parameter BufferWidth = 2)
-    (clk, rst, Push, Pop, W_Addr, R_Addr, Round);
+    (clk, aclr, Push, Pop, W_Addr, R_Addr, Round);
 
-    input clk, rst, Push, Pop;
+    input clk, aclr, Push, Pop;
     input [BufferWidth-1:0] W_Addr, R_Addr;
     output reg Round;
-    always @(posedge clk , posedge rst)
+    always @(posedge clk , posedge aclr)
     begin
-        if(rst) begin
+        if(aclr) begin
             Round <= 1'b 0;
         end
         else if(W_Addr == 2'b 11  && Push) begin

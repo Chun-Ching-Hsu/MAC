@@ -4,7 +4,7 @@ module FIFO_Buffer_tb
         parameter BufferWidth = 2,
         parameter BufferSize = 4)();
 
-        reg clk, rst;
+        reg clk, aclr;
         reg Pop1, Pop2, Push;
         reg [DataWidth-1:0] DataIn;
 
@@ -13,18 +13,18 @@ module FIFO_Buffer_tb
         wire [DataWidth-1:0] DataOut1, DataOut2;
 
     FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize)) 
-        dut (.clk(clk), .rst(rst), .Pop1(Pop1), .Pop2(Pop2), .Push(Push), .DataIn(DataIn),
+        dut (.clk(clk), .aclr(aclr), .Pop1(Pop1), .Pop2(Pop2), .Push(Push), .DataIn(DataIn),
         .Empty(Empty), .Full(Full), .ReadyM(ReadyM), .DataOut1(DataOut1), .DataOut2(DataOut2));
 
     initial begin
         clk = 1;
-        rst = 1;
+        aclr = 1;
         DataIn = 0;
         Push = 0;
         Pop1 = 0;
         Pop2 = 0;
         #1
-        rst = 0;
+        aclr = 0;
         Push = 1;
         Pop1 = 0;
         Pop2 = 0;

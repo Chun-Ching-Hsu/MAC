@@ -2,23 +2,23 @@
 module Round_tb 
     #(  parameter BufferWidth = 4)();
 
-    reg clk, rst, Push, Pop;
+    reg clk, aclr, Push, Pop;
     reg [BufferWidth-1:0] W_Addr, R_Addr;
     wire Round;
 
     Round #(.BufferWidth(BufferWidth)) round
-    (.clk(clk), .rst(rst), .Push(Push), .Pop(Pop), .W_Addr(W_Addr), .R_Addr(R_Addr), .Round(Round));
+    (.clk(clk), .aclr(aclr), .Push(Push), .Pop(Pop), .W_Addr(W_Addr), .R_Addr(R_Addr), .Round(Round));
 
     initial begin
         clk = 1;
-        rst = 1;
+        aclr = 1;
         Push = 0;
         Pop = 0;
         W_Addr = 0;
         R_Addr = 0;
         $display("Answer: 0");
         #1
-        rst = 0;
+        aclr = 0;
         Push = 1;
         Pop = 0;
         W_Addr = 3;

@@ -8,13 +8,13 @@ module PE_Group
 		parameter W_PEAddrWidth = 2,
 		parameter O_PEAddrWidth = 2,
 		parameter I_PEAddrWidth = 3) 
-	(	clk, rst,
+	(	clk, aclr,
 		W_DataInValid, W_DataInRdy, W_DataIn,
 		I_DataInValid, I_DataInRdy, I_DataIn,
 		O_DataInValid, O_DataInRdy, O_DataIn,
 		O_DataOutValid, O_DataOutRdy, O_DataOut);
 		// 不能用 一維以上array 當作輸入和輸出 另外接wire
-	input clk, rst;
+	input clk, aclr;
 	input W_DataInValid;
 	input I_DataInValid;
 	input O_DataInValid, O_DataOutRdy;
@@ -22,33 +22,33 @@ module PE_Group
 	input [DataWidth - 1 : 0] O_DataIn;
 	input [DataWidth - 1 : 0] I_DataIn;
 	
-	wire [DataWidth - 1 : 0] W_Data [W_PEGroupSize - 1 : 0][ O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] I_Data [W_PEGroupSize - 1 : 0][ O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] O_Data [W_PEGroupSize - 1 : 0][ O_PEGroupSize - 1 : 0];
+	wire [DataWidth - 1 : 0] W_Data [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] I_Data [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] O_Data [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 	
-	wire W_InValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire I_InValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire O_InValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire W_InValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire I_InValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire O_InValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 
-	wire W_InRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire I_InRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire O_InRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire W_InRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire I_InRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire O_InRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 
-	wire W_OutValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire I_OutValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire O_OutValid [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire W_OutValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire I_OutValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire O_OutValid [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 
-	wire W_OutRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire I_OutRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire O_OutRdy [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire W_OutRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire I_OutRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire O_OutRdy [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 
-	wire [DataWidth - 1 : 0] W_In [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] I_In [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] O_In [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire [DataWidth - 1 : 0] W_In [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] I_In [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] O_In [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 
-	wire [DataWidth - 1 : 0] W_Out [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] I_Out [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
-	wire [DataWidth - 1 : 0] O_Out [W_PEGroupSize - 1 : 0][O_PEGroupSize - 1 : 0];
+	wire [DataWidth - 1 : 0] W_Out [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] I_Out [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] O_Out [0 : W_PEGroupSize - 1][0 : O_PEGroupSize - 1];
 	
 	output [DataWidth - 1: 0] O_DataOut;
 	output W_DataInRdy;
@@ -65,16 +65,17 @@ module PE_Group
 	assign O_Rec_Handshaking = O_DataInValid & O_DataInRdy;
 	assign O_Send_Handshaking = O_DataOutValid & O_DataOutRdy;
 
-	PE_Controller #(.W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), 
-					.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth))
-	ctrl (			.clk(clk), .rst(rst), 
-					.EN_W(W_Rec_Handshaking), .EN_I(I_Rec_Handshaking), .EN_O_In(O_Rec_Handshaking), .EN_O_Out(O_Send_Handshaking),
-					.W_PEAddr(W_PEAddr), .I_PEAddr(I_PEAddr), .O_In_PEAddr(O_In_PEAddr), .O_Out_PEAddr(O_Out_PEAddr));
-	
 	wire [W_PEAddrWidth - 1 : 0] W_PEAddr;
 	wire [I_PEAddrWidth - 1 : 0] I_PEAddr;
 	wire [O_PEAddrWidth - 1 : 0] O_In_PEAddr;
 	wire [O_PEAddrWidth - 1 : 0] O_Out_PEAddr;
+
+	PE_Controller #(.W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), 
+					.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth))
+	ctrl (			.clk(clk), .aclr(aclr), 
+					.EN_W(W_Rec_Handshaking), .EN_I(I_Rec_Handshaking), .EN_O_In(O_Rec_Handshaking), .EN_O_Out(O_Send_Handshaking),
+					.W_PEAddr(W_PEAddr), .I_PEAddr(I_PEAddr), .O_In_PEAddr(O_In_PEAddr), .O_Out_PEAddr(O_Out_PEAddr));
+	
 
 	//edges
 	assign W_InValid[0][0] = W_DataInValid && (W_PEAddr == 0);
@@ -83,6 +84,11 @@ module PE_Group
 	assign W_InValid[0][3] = W_DataInValid && (W_PEAddr == 3); 
 
 	assign W_DataInRdy = W_InRdy[0][W_PEAddr];
+
+	assign W_OutRdy[3][0] = 1'b 1;
+	assign W_OutRdy[3][1] = 1'b 1;
+	assign W_OutRdy[3][2] = 1'b 1;
+	assign W_OutRdy[3][3] = 1'b 1;
 
 	assign I_InValid[0][0] = I_DataInValid && (I_PEAddr == 0);
 	assign I_InValid[1][0] = I_DataInValid && (I_PEAddr == 1);
@@ -103,14 +109,24 @@ module PE_Group
 			6: I_DataInRdy = I_InRdy[3][3];
 			default: I_DataInRdy = 0;
 		endcase
-
 	end
+
+	assign I_OutRdy[0][0] = 1'b 1;
+	assign I_OutRdy[0][1] = 1'b 1;
+	assign I_OutRdy[0][2] = 1'b 1;
+	assign I_OutRdy[0][3] = 1'b 1;
+
 	assign O_InValid[0][0] = O_DataInValid && (O_In_PEAddr == 0);
 	assign O_InValid[1][0] = O_DataInValid && (O_In_PEAddr == 1);
 	assign O_InValid[2][0] = O_DataInValid && (O_In_PEAddr == 2);
 	assign O_InValid[3][0] = O_DataInValid && (O_In_PEAddr == 3);
 
 	assign O_DataInRdy = O_InRdy[O_In_PEAddr][0];
+
+	assign O_OutRdy[0][3] = 1'b 1;
+	assign O_OutRdy[1][3] = 1'b 1;
+	assign O_OutRdy[2][3] = 1'b 1;
+	assign O_OutRdy[3][3] = 1'b 1;
 
 	assign W_In[0][0] = W_DataIn;
 	assign W_In[0][1] = W_DataIn;
@@ -143,7 +159,7 @@ module PE_Group
 			for ( j = 0 ; j < W_PEGroupSize ; j = j + 1)begin :generate_PE_j   
 				PE PE_buffer(
 						.clk(clk),
-						.rst(rst), // reset 應該是大家一起麻
+						.aclr(aclr),
 						
 						// W part
 						.W_DataInValid(W_InValid[i][j]),
@@ -197,8 +213,8 @@ module PE_Group
 			end
 		end
 		for(i = 0; i < O_PEGroupSize; i = i + 1) begin: generate_ACC
-			ACC #(.DataWidth(DataWidth), .Pipeline_Stages(7), .NumberOfAccumulate(4), .NumberOfAccumulateWidth(2)) acc
-				(	.clk(clk), .rst(rst), .DataInValid(O_OutValid[i][W_PEGroupSize - 1]), .DataIn(O_Out[i][W_PEGroupSize - 1]), 
+			ACC #(.DataWidth(DataWidth), .Pipeline_Stages(7), .AccumulateCount(4), .AccumulateCountWidth(2)) acc
+				(	.clk(clk), .aclr(aclr), .DataInValid(O_OutValid[i][W_PEGroupSize - 1]), .DataIn(O_Out[i][W_PEGroupSize - 1]), 
 					.DataOutValid(O_ACCDataOutValid[i]), .DataOut(O_ACCDataOut[i]));
 		end
 	

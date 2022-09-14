@@ -7,6 +7,10 @@ vmap work work
 #vlog -work work {C:\intelFPGA_lite\18.0\quartus\eda\sim_lib\220model.v}
 #vlog -work work {C:\intelFPGA_lite\18.0\quartus\eda\sim_lib\altera_mf.v}
 
+vlog -work work Buffer.v
+vlog -work work Pointer.v
+vlog -work work Ready.v
+vlog -work work Round.v
 vlog -work work FIFO_Buffer.v
 vlog -work work FIFO_Buffer_tb.v
 
@@ -16,7 +20,7 @@ vsim -t ps work.FIFO_Buffer_tb
 view wave
 
 add wave -binary /FIFO_Buffer_tb/clk
-add wave -binary /FIFO_Buffer_tb/rst
+add wave -binary /FIFO_Buffer_tb/aclr
 add wave -binary /FIFO_Buffer_tb/Pop1
 add wave -binary /FIFO_Buffer_tb/Pop2
 add wave -binary /FIFO_Buffer_tb/Push

@@ -16,7 +16,8 @@ vsim -t ps work.Pointer_tb
 view wave
 
 add wave -binary /Pointer_tb/clk
-add wave -binary /Pointer_tb/rst
+add wave -binary /Pointer_tb/aclr
+add wave -binary /Pointer_tb/sclr
 add wave -binary /Pointer_tb/EN
 
 add wave -decimal /Pointer_tb/Pointer

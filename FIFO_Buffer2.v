@@ -3,10 +3,10 @@ module FIFO_Buffer2
         #(      parameter DataWidth = 32,
                 parameter BufferWidth = 2,
                 parameter BufferSize = 4)
-        (clk, rst, Pop2, Push, DataIn,
+        (clk, aclr, Pop2, Push, DataIn,
         Full, ReadyM, DataOut2);
 
-        input clk, rst;
+        input clk, aclr;
         input Pop2, Push;
         input [DataWidth-1:0] DataIn;
 
@@ -20,17 +20,17 @@ module FIFO_Buffer2
         wire [BufferSize-1:0] Valid;
 
         Buffer #(.DataWidth(DataWidth), .BufferSize(BufferSize), .BufferWidth(BufferWidth))
-                buffer( .clk(clk), .aclr(rst), .EN(Push), .W_Addr(W_Addr), .R_Addr2(R_Addr2), .DataIn(DataIn), 
+                buffer( .clk(clk), .aclr(aclr), .EN(Push), .W_Addr(W_Addr), .R_Addr2(R_Addr2), .DataIn(DataIn), 
                         .DataOut1(), .DataOut2(DataOut2));
 
         Pointer #(.BufferWidth(BufferWidth))
-                TP( .clk(clk), .rst(rst), .EN(Push), .Pointer(W_Addr));
+                TP( .clk(clk), .aclr(aclr), .EN(Push), .Pointer(W_Addr));
 
         Pointer #(.BufferWidth(BufferWidth))
-                HPM( .clk(clk), .rst(rst), .EN(Pop2), .Pointer(R_Addr2));
+                HPM( .clk(clk), .aclr(aclr), .EN(Pop2), .Pointer(R_Addr2));
 
         Round #(.BufferWidth(BufferWidth))
-                RoundMUnit(.clk(clk), .rst(rst), .Push(Push), .Pop(Pop2), .W_Addr(W_Addr), .R_Addr(R_Addr2), .Round(RoundM));
+                RoundMUnit(.clk(clk), .aclr(aclr), .Push(Push), .Pop(Pop2), .W_Addr(W_Addr), .R_Addr(R_Addr2), .Round(RoundM));
 
         Ready #(.BufferWidth(BufferWidth), .BufferSize(BufferSize), .PseudoBufferWidth(BufferWidth+1), .PseudoBufferSize(BufferSize+BufferSize))
                 ReadyMUnit(.W_Addr(W_Addr), .R_Addr(R_Addr2), .Round(RoundM), .Ready(ReadyM));

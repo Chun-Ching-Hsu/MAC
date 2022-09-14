@@ -6,7 +6,7 @@ module PE
         parameter MUL_Pipeline_Stages = 5,
         parameter ADD_Pipeline_Stages = 7,
         parameter Pipeline_Stages = MUL_Pipeline_Stages + ADD_Pipeline_Stages)
-    (   clk, rst,
+    (   clk, aclr,
         W_DataInValid, W_DataInRdy, W_DataIn,
         W_DataOut, W_DataOutValid, W_DataOutRdy,
         I_DataInValid, I_DataInRdy, I_DataIn,
@@ -20,7 +20,7 @@ module PE
     input O_DataInValid, O_DataOutRdy; //O_DataOutRdy is used to peek the next PE
     
     input clk;
-    input rst;
+    input aclr;
     
     wire [BufferWidth-1:0] HPM;
 
@@ -46,24 +46,24 @@ module PE
     wire NOPIn, NOPOut;
 
     FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
-                    W_Buffer(.clk(clk), .rst(rst), .Pop1(W_Send_Handshaking), .Pop2(~NOPIn), .Push(W_Rec_Handshaking), .DataIn(W_DataIn),
+                    W_Buffer(.clk(clk), .aclr(aclr), .Pop1(W_Send_Handshaking), .Pop2(~NOPIn), .Push(W_Rec_Handshaking), .DataIn(W_DataIn),
                             .Empty(W_Empty), .Full(W_Full), .ReadyM(W_ReadyM), .DataOut1(W_DataOut), .DataOut2(W_DataOut2));
 
     FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
-                    I_Buffer(.clk(clk), .rst(rst), .Pop1(I_Send_Handshaking), .Pop2(~NOPIn), .Push(I_Rec_Handshaking), .DataIn(I_DataIn),
+                    I_Buffer(.clk(clk), .aclr(aclr), .Pop1(I_Send_Handshaking), .Pop2(~NOPIn), .Push(I_Rec_Handshaking), .DataIn(I_DataIn),
                             .Empty(I_Empty), .Full(I_Full), .ReadyM(I_ReadyM), .DataOut1(I_DataOut), .DataOut2(I_DataOut2));
 
     FIFO_Buffer2    #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
-                    O_Buffer(.clk(clk), .rst(rst), .Pop2(~NOPIn), .Push(O_Rec_Handshaking), .DataIn(O_DataIn),
+                    O_Buffer(.clk(clk), .aclr(aclr), .Pop2(~NOPIn), .Push(O_Rec_Handshaking), .DataIn(O_DataIn),
                             .Full(O_Full), .ReadyM(O_ReadyM), .DataOut2(O_DataOut2));
 
     MAC_Pipeline    #(.DataWidth(DataWidth), .MUL_Pipeline_Stages(MUL_Pipeline_Stages), 
                         .ADD_Pipeline_Stages(ADD_Pipeline_Stages), .Pipeline_Stages(Pipeline_Stages))
-                    MAC_Unit(.clk(clk), .rst(rst), .NOPIn(NOPIn), .NOPOut(NOPOut), 
+                    MAC_Unit(.clk(clk), .aclr(aclr), .NOPIn(NOPIn), .NOPOut(NOPOut), 
                         .W_Data(W_DataOut2), .I_Data(I_DataOut2), .O_Data(O_DataOut2), .DataOut(O_DataOut));
 
     Pointer #(.BufferWidth(BufferWidth))
-            HPMUnit( .clk(clk), .rst(rst), .EN(~NOPIn), .Pointer(HPM));
+            HPMUnit( .clk(clk), .aclr(aclr), .EN(~NOPIn), .Pointer(HPM));
 
     assign ReadyM = W_ReadyM & I_ReadyM & O_ReadyM;
 

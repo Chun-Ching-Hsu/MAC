@@ -5,7 +5,7 @@ module MAC_Pipeline_tb
         parameter ADD_Pipeline_Stages = 7,
         parameter Pipeline_Stages = MUL_Pipeline_Stages + ADD_Pipeline_Stages)();
 
-    reg clk, rst, NOPIn;
+    reg clk, aclr, NOPIn;
     reg [DataWidth-1:0] W_Data, I_Data, O_Data;
         
     wire NOPOut;
@@ -15,18 +15,18 @@ module MAC_Pipeline_tb
 
     MAC_Pipeline #(.DataWidth(DataWidth), .MUL_Pipeline_Stages(MUL_Pipeline_Stages), 
                 .ADD_Pipeline_Stages(ADD_Pipeline_Stages), .Pipeline_Stages(Pipeline_Stages))
-    dut (.clk(clk), .rst(rst), .NOPIn(NOPIn), .NOPOut(NOPOut), 
+    dut (.clk(clk), .aclr(aclr), .NOPIn(NOPIn), .NOPOut(NOPOut), 
         .W_Data(W_Data), .I_Data(I_Data), .O_Data(O_Data), .DataOut(DataOut));
     
     initial begin
         clk = 1;
-        rst = 1;
+        aclr = 1;
         NOPIn = 1;
         W_Data = 0;
         I_Data = 0;
         O_Data = 0;   
         #1
-        rst = 0;
+        aclr = 0;
         NOPIn = 0;
         W_Data = 32'h4170_0000; //15
         I_Data = 32'h4080_0000; //4

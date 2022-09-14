@@ -16,7 +16,7 @@ vsim -t ps work.MAC_Pipeline_tb
 view wave
 
 add wave -binary /MAC_Pipeline_tb/clk
-add wave -binary /MAC_Pipeline_tb/rst
+add wave -binary /MAC_Pipeline_tb/aclr
 add wave -binary /MAC_Pipeline_tb/NOPIn
 
 add wave -hexadecimal /MAC_Pipeline_tb/W_Data
@@ -25,8 +25,6 @@ add wave -hexadecimal /MAC_Pipeline_tb/O_Data
 
 add wave -binary /MAC_Pipeline_tb/NOPOut
 add wave -hexadecimal /MAC_Pipeline_tb/DataOut
-add wave -hexadecimal /MAC_Pipeline_tb/MulResult
-add wave -hexadecimal /MAC_Pipeline_tb/O_Data_Pipeline_Out
 
 run 40ps
 wave zoomrange 0ps 65ps
