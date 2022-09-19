@@ -7,13 +7,17 @@ module PE_Group
 		parameter I_PEGroupSize = W_PEGroupSize + O_PEGroupSize - 1,
 		parameter W_PEAddrWidth = 2,
 		parameter O_PEAddrWidth = 2,
-		parameter I_PEAddrWidth = 3) 
+		parameter I_PEAddrWidth = 3,
+		parameter I_BlockCount = 4,
+		parameter I_BlockCountWidth = 2) 
 	(	clk, aclr,
 		W_DataInValid, W_DataInRdy, W_DataIn,
 		I_DataInValid, I_DataInRdy, I_DataIn,
 		O_DataInValid, O_DataInRdy, O_DataIn,
-		O_DataOutValid, O_DataOutRdy, O_DataOut);
-		// 不能用 一維以上array 當作輸入和輸出 另外接wire
+		O_DataOutValid, O_DataOutRdy, O_DataOut,
+		Test_I_Data00, Test_I_Data10, Test_I_Data20, Test_I_Data30, Test_I_Data31, Test_I_Data32, Test_I_Data33,
+		Test_I_PEAddr);
+
 	input clk, aclr;
 	input W_DataInValid;
 	input I_DataInValid;
@@ -70,11 +74,34 @@ module PE_Group
 	wire [O_PEAddrWidth - 1 : 0] O_In_PEAddr;
 	wire [O_PEAddrWidth - 1 : 0] O_Out_PEAddr;
 
+	wire [I_BlockCountWidth - 1 : 0] I_Block_Counter;
+	wire I_BLOCK_EQUAL_TO_ZERO;
+	wire I_BLOCK_EQUAL_TO_BLOCK_COUNT;
+
+	//test
+	output [DataWidth - 1 : 0] Test_I_Data00, Test_I_Data10, Test_I_Data20, Test_I_Data30, Test_I_Data31, Test_I_Data32, Test_I_Data33;
+	assign Test_I_Data00 = I_Out[0][0];
+	assign Test_I_Data10 = I_Out[1][0];
+	assign Test_I_Data20 = I_Out[2][0];
+	assign Test_I_Data30 = I_Out[3][0];
+	assign Test_I_Data31 = I_Out[3][1];
+	assign Test_I_Data32 = I_Out[3][2];
+	assign Test_I_Data33 = I_Out[3][3];
+
+	output [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
+	assign Test_I_PEAddr = I_PEAddr;
+
+	assign I_BLOCK_EQUAL_TO_ZERO = (I_Block_Counter == 0);
+	assign I_BLOCK_EQUAL_TO_BLOCK_COUNT = (I_Block_Counter == I_BlockCount - 1);
+
+
 	PE_Controller #(.W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), 
-					.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth))
+					.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth),
+					.I_BlockCount(I_BlockCount), .I_BlockCountWidth(I_BlockCountWidth))
 	ctrl (			.clk(clk), .aclr(aclr), 
 					.EN_W(W_Rec_Handshaking), .EN_I(I_Rec_Handshaking), .EN_O_In(O_Rec_Handshaking), .EN_O_Out(O_Send_Handshaking),
-					.W_PEAddr(W_PEAddr), .I_PEAddr(I_PEAddr), .O_In_PEAddr(O_In_PEAddr), .O_Out_PEAddr(O_Out_PEAddr));
+					.W_PEAddr(W_PEAddr), .I_PEAddr(I_PEAddr), .O_In_PEAddr(O_In_PEAddr), .O_Out_PEAddr(O_Out_PEAddr),
+					.I_Block_Counter(I_Block_Counter));
 	
 
 	//edges
@@ -90,9 +117,9 @@ module PE_Group
 	assign W_OutRdy[3][2] = 1'b 1;
 	assign W_OutRdy[3][3] = 1'b 1;
 
-	assign I_InValid[0][0] = I_DataInValid && (I_PEAddr == 0);
-	assign I_InValid[1][0] = I_DataInValid && (I_PEAddr == 1);
-	assign I_InValid[2][0] = I_DataInValid && (I_PEAddr == 2);
+	assign I_InValid[0][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataInValid && (I_PEAddr == 0) : I_OutValid[1][3];
+	assign I_InValid[1][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataInValid && (I_PEAddr == 1) : I_OutValid[2][3];
+	assign I_InValid[2][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataInValid && (I_PEAddr == 2) : I_OutValid[3][3];
 	assign I_InValid[3][0] = I_DataInValid && (I_PEAddr == 3);
 	assign I_InValid[3][1] = I_DataInValid && (I_PEAddr == 4);
 	assign I_InValid[3][2] = I_DataInValid && (I_PEAddr == 5);
@@ -116,6 +143,10 @@ module PE_Group
 	assign I_OutRdy[0][2] = 1'b 1;
 	assign I_OutRdy[0][3] = 1'b 1;
 
+	assign I_OutRdy[1][3] = (I_BLOCK_EQUAL_TO_BLOCK_COUNT) ? 1 : I_InRdy[0][0];
+	assign I_OutRdy[2][3] = (I_BLOCK_EQUAL_TO_BLOCK_COUNT) ? 1 : I_InRdy[1][0];
+	assign I_OutRdy[3][3] = (I_BLOCK_EQUAL_TO_BLOCK_COUNT) ? 1 : I_InRdy[2][0];
+
 	assign O_InValid[0][0] = O_DataInValid && (O_In_PEAddr == 0);
 	assign O_InValid[1][0] = O_DataInValid && (O_In_PEAddr == 1);
 	assign O_InValid[2][0] = O_DataInValid && (O_In_PEAddr == 2);
@@ -133,9 +164,9 @@ module PE_Group
 	assign W_In[0][2] = W_DataIn;
 	assign W_In[0][3] = W_DataIn;
 
-	assign I_In[0][0] = I_DataIn;
-	assign I_In[1][0] = I_DataIn;
-	assign I_In[2][0] = I_DataIn;
+	assign I_In[0][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataIn : I_Out[1][3];
+	assign I_In[1][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataIn : I_Out[2][3];
+	assign I_In[2][0] = I_BLOCK_EQUAL_TO_ZERO ? I_DataIn : I_Out[3][3];
 	assign I_In[3][0] = I_DataIn;
 	assign I_In[3][1] = I_DataIn;
 	assign I_In[3][2] = I_DataIn;
@@ -206,7 +237,7 @@ module PE_Group
 		end
 		
 		for(i = 0; i < O_PEGroupSize; i = i + 1) begin: Inner_Output_Wires_i
-			for(j = 1; j < W_PEGroupSize; j = j + 1) begin: Inner_Output_Wires_j
+			for(j = 1; j < W_PEGroupSize - 1; j = j + 1) begin: Inner_Output_Wires_j
 				assign O_InValid[i][j] = O_OutValid[i][j-1];
 				assign O_OutRdy[i][j-1] = O_InRdy[i][j];
 				assign O_In[i][j] = O_Out[i][j-1];
@@ -215,7 +246,7 @@ module PE_Group
 		for(i = 0; i < O_PEGroupSize; i = i + 1) begin: generate_ACC
 			ACC #(.DataWidth(DataWidth), .Pipeline_Stages(7), .AccumulateCount(4), .AccumulateCountWidth(2)) acc
 				(	.clk(clk), .aclr(aclr), .DataInValid(O_OutValid[i][W_PEGroupSize - 1]), .DataIn(O_Out[i][W_PEGroupSize - 1]), 
-					.DataOutValid(O_ACCDataOutValid[i]), .DataOut(O_ACCDataOut[i]));
+					.DataInRdy(O_OutRdy[i][W_PEGroupSize - 1]), .DataOutValid(O_ACCDataOutValid[i]), .DataOut(O_ACCDataOut[i]));
 		end
 	
 	endgenerate 

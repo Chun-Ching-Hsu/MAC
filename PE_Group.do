@@ -20,6 +20,7 @@ vlog -work work OutputDataPipeline.v
 vlog -work work Buffer.v
 
 vlog -work work PE.v
+vlog -work work PE_Controller.v
 vlog -work work PE_Group.v
 vlog -work work PE_Group_tb.v
 
@@ -48,5 +49,16 @@ add wave -hexadecimal /PE_Group_tb/O_DataIn
 
 add wave -hexadecimal /PE_Group_tb/O_DataOut
 
-run 40ps
-wave zoomrange 0ps 65ps
+#test
+add wave -unsigned /PE_Group_tb/Test_I_Data00
+add wave -unsigned /PE_Group_tb/Test_I_Data10
+add wave -unsigned /PE_Group_tb/Test_I_Data20
+add wave -unsigned /PE_Group_tb/Test_I_Data30
+add wave -unsigned /PE_Group_tb/Test_I_Data31
+add wave -unsigned /PE_Group_tb/Test_I_Data32
+add wave -unsigned /PE_Group_tb/Test_I_Data33
+
+add wave -unsigned /PE_Group_tb/Test_I_PEAddr
+
+run 80ps
+wave zoomrange 0ps 100ps

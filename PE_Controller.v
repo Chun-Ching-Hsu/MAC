@@ -9,7 +9,7 @@ module PE_Controller
 		parameter I_BlockCount = 4,
 		parameter I_BlockCountWidth = 2)
 		(clk, aclr, sclr, EN_W, EN_I, EN_O_In, EN_O_Out,
-		W_PEAddr, I_PEAddr, O_In_PEAddr, O_Out_PEAddr);
+		W_PEAddr, I_PEAddr, O_In_PEAddr, O_Out_PEAddr, I_Block_Counter);
 
 	input clk, aclr, sclr;
 	input EN_W, EN_I, EN_O_In, EN_O_Out;
@@ -18,7 +18,7 @@ module PE_Controller
 	output [O_PEAddrWidth - 1 : 0] O_In_PEAddr;
 	output [O_PEAddrWidth - 1 : 0] O_Out_PEAddr;
 
-	reg [I_BlockCountWidth - 1:0] I_Block_Counter;
+	output reg [I_BlockCountWidth - 1:0] I_Block_Counter;
 
 	wire [I_PEAddrWidth - 1 : 0] I_PEAddr_Tmp;
 
