@@ -10,6 +10,7 @@ vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\altera_mf.v}
 vlog -work work FP_ADD.v
 vlog -work work NOPPipeline.v
 vlog -work work OutputDataPipeline.v
+vlog -work work ValidPipeline.v
 
 vlog -work work ACC.v
 vlog -work work ACC_tb.v
@@ -26,6 +27,8 @@ add wave -binary /ACC_tb/DataInValid
 add wave -binary /ACC_tb/DataInRdy
 
 add wave -binary /ACC_tb/DataOutValid
+
+add wave -binary /ACC_tb/Test_Accumulate
 
 add wave -hexadecimal /ACC_tb/DataIn
 

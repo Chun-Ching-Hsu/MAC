@@ -18,9 +18,11 @@ vlog -work work FP_ADD.v
 vlog -work work NOPPipeline.v
 vlog -work work OutputDataPipeline.v
 vlog -work work Buffer.v
+vlog -work work ValidPipeline.v
 
 vlog -work work PE.v
 vlog -work work PE_Controller.v
+vlog -work work ACC.v
 vlog -work work PE_Group.v
 vlog -work work PE_Group_tb.v
 
@@ -50,15 +52,42 @@ add wave -hexadecimal /PE_Group_tb/O_DataIn
 add wave -hexadecimal /PE_Group_tb/O_DataOut
 
 #test
-add wave -unsigned /PE_Group_tb/Test_I_Data00
-add wave -unsigned /PE_Group_tb/Test_I_Data10
-add wave -unsigned /PE_Group_tb/Test_I_Data20
-add wave -unsigned /PE_Group_tb/Test_I_Data30
-add wave -unsigned /PE_Group_tb/Test_I_Data31
-add wave -unsigned /PE_Group_tb/Test_I_Data32
-add wave -unsigned /PE_Group_tb/Test_I_Data33
 
+add wave -hexadecimal /PE_Group_tb/Test_O_Data00
+add wave -hexadecimal /PE_Group_tb/Test_O_Data01
+add wave -hexadecimal /PE_Group_tb/Test_O_Data02
+add wave -hexadecimal /PE_Group_tb/Test_O_Data03
+
+add wave -unsigned /PE_Group_tb/Test_O_In_PEAddr
+add wave -unsigned /PE_Group_tb/Test_O_Out_PEAddr
 add wave -unsigned /PE_Group_tb/Test_I_PEAddr
 
-run 80ps
-wave zoomrange 0ps 100ps
+add wave -binary /PE_Group_tb/Test_InValid00
+add wave -binary /PE_Group_tb/Test_InValid01
+add wave -binary /PE_Group_tb/Test_InValid02
+add wave -binary /PE_Group_tb/Test_InValid03
+
+add wave -binary /PE_Group_tb/Test_InValid10
+add wave -binary /PE_Group_tb/Test_InValid11
+add wave -binary /PE_Group_tb/Test_InValid12
+add wave -binary /PE_Group_tb/Test_InValid13
+
+add wave -binary /PE_Group_tb/Test_OutValid00
+add wave -binary /PE_Group_tb/Test_OutValid01
+add wave -binary /PE_Group_tb/Test_OutValid02
+add wave -binary /PE_Group_tb/Test_OutValid03
+
+add wave -binary /PE_Group_tb/Test_OutValid10
+add wave -binary /PE_Group_tb/Test_OutValid11
+add wave -binary /PE_Group_tb/Test_OutValid12
+add wave -binary /PE_Group_tb/Test_OutValid13
+
+add wave -hexadecimal /PE_Group_tb/Test_ACC_DataOut
+add wave -binary /PE_Group_tb/Test_Accumulate
+add wave -binary /PE_Group_tb/Acc
+
+add wave -unsigned /PE_Group_tb/Test_O_In_Block_Counter
+add wave -unsigned /PE_Group_tb/Test_I_Block_Counter
+
+run 900ps
+wave zoomrange 0ps 1000ps

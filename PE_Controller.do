@@ -30,5 +30,18 @@ add wave -unsigned /PE_Controller_tb/I_PEAddr
 add wave -unsigned /PE_Controller_tb/O_In_PEAddr
 add wave -unsigned /PE_Controller_tb/O_Out_PEAddr
 
+add wave -unsigned /PE_Controller_tb/I_Block_Counter
+add wave -unsigned /PE_Controller_tb/O_In_Block_Counter
+add wave -unsigned /PE_Controller_tb/O_Out_Block_Counter
+
+add wave -binary /PE_Controller_tb/I_BLOCK_EQUAL_TO_ZERO
+add wave -binary /PE_Controller_tb/I_BLOCK_EQUAL_TO_BLOCK_COUNT
+add wave -binary /PE_Controller_tb/O_IN_BLOCK_EQUAL_TO_ZERO
+add wave -binary /PE_Controller_tb/O_IN_BLOCK_EQUAL_TO_BLOCK_COUNT
+
+add wave -binary /PE_Controller_tb/O_OUT_BLOCK_EQUAL_TO_ZERO
+add wave -binary /PE_Controller_tb/O_OUT_BLOCK_EQUAL_TO_BLOCK_COUNT
+
+
 run 40ps
 wave zoomrange 0ps 65ps

@@ -13,10 +13,14 @@ module ACC_tb
 	wire DataInRdy;
     wire [DataWidth - 1 : 0] DataOut;
     
+    //test
+    wire Test_Accumulate;
+    
     ACC #(  .DataWidth(DataWidth), .Pipeline_Stages(Pipeline_Stages),
             .AccumulateCount(AccumulateCount), .AccumulateCountWidth(AccumulateCountWidth)) 
 	dut (   .clk(clk), .aclr(aclr), .DataInValid(DataInValid), .DataInRdy(DataInRdy),
-            .DataIn(DataIn), .DataOutValid(DataOutValid), .DataOut(DataOut));
+            .DataIn(DataIn), .DataOutValid(DataOutValid), .DataOut(DataOut),
+            .Test_Accumulate(Test_Accumulate));
     
     initial begin
         clk = 1;
@@ -30,7 +34,7 @@ module ACC_tb
         #2
         DataInValid = 0;
         DataIn = 32'h0000_0000;
-        #16
+        #2
         DataInValid = 1;
         DataIn = 32'h4080_0000; //4
         #2

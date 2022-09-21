@@ -9,8 +9,8 @@ module PE_Group_tb
 		parameter W_PEAddrWidth = 2,
 		parameter O_PEAddrWidth = 2,
 		parameter I_PEAddrWidth = 3,
-		parameter I_BlockCount = 4,
-		parameter I_BlockCountWidth = 2)();
+		parameter BlockCount = 4,
+		parameter BlockCountWidth = 3)();
     
 	reg clk, aclr;
 	reg W_DataInValid;
@@ -26,23 +26,37 @@ module PE_Group_tb
 	wire O_DataInRdy, O_DataOutValid;
 
 	//test
-	wire [DataWidth - 1: 0] Test_I_Data00, Test_I_Data10, Test_I_Data20, Test_I_Data30, Test_I_Data31, Test_I_Data32, Test_I_Data33;
-	wire Test_W_InRdy0, Test_W_InRdy1, Test_W_InRdy2, Test_W_InRdy3;
+	wire [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
 	wire [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
+	wire [DataWidth - 1 : 0] Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03;
+	wire Test_InValid00, Test_InValid01, Test_InValid02, Test_InValid03;
+	wire Test_InValid10, Test_InValid11, Test_InValid12, Test_InValid13;
+	wire Test_OutValid00, Test_OutValid01, Test_OutValid02, Test_OutValid03;
+	wire Test_OutValid10, Test_OutValid11, Test_OutValid12, Test_OutValid13;
+	wire [DataWidth - 1: 0] Test_ACC_DataOut;
+	wire [3:0] Test_Accumulate;
+	wire Test_O_BLOCK_MORE_THAN_BLOCK_COUNT;
+	wire [BlockCountWidth - 1 : 0] Test_O_In_Block_Counter, Test_I_Block_Counter;
+	wire Acc;
 
     PE_Group #( .DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize),
                 .W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), .I_PEGroupSize(I_PEGroupSize),
 				.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth),
-				.I_BlockCount(I_BlockCount), .I_BlockCountWidth(I_BlockCountWidth))
+				.BlockCount(BlockCount), .BlockCountWidth(BlockCountWidth))
     dut
 	(   .clk(clk), .aclr(aclr),
 		.W_DataInValid(W_DataInValid), .W_DataInRdy(W_DataInRdy), .W_DataIn(W_DataIn),
 		.I_DataInValid(I_DataInValid), .I_DataInRdy(I_DataInRdy), .I_DataIn(I_DataIn),
 		.O_DataInValid(O_DataInValid), .O_DataInRdy(O_DataInRdy), .O_DataIn(O_DataIn),
 		.O_DataOutValid(O_DataOutValid), .O_DataOutRdy(O_DataOutRdy), .O_DataOut(O_DataOut),
-		.Test_I_Data00(Test_I_Data00), .Test_I_Data10(Test_I_Data10), .Test_I_Data20(Test_I_Data20), 
-		.Test_I_Data30(Test_I_Data30), .Test_I_Data31(Test_I_Data31), .Test_I_Data32(Test_I_Data32), .Test_I_Data33(Test_I_Data33),
-		.Test_I_PEAddr(Test_I_PEAddr));
+		.Test_O_Data00(Test_O_Data00), .Test_O_Data01(Test_O_Data01), .Test_O_Data02(Test_O_Data02), .Test_O_Data03(Test_O_Data03),
+		.Test_O_In_PEAddr(Test_O_In_PEAddr), .Test_O_Out_PEAddr(Test_O_Out_PEAddr), .Test_I_PEAddr(Test_I_PEAddr),
+		.Test_InValid00(Test_InValid00), .Test_InValid01(Test_InValid01), .Test_InValid02(Test_InValid02), .Test_InValid03(Test_InValid03),
+		.Test_InValid10(Test_InValid10), .Test_InValid11(Test_InValid11), .Test_InValid12(Test_InValid12), .Test_InValid13(Test_InValid13),
+		.Test_OutValid00(Test_OutValid00), .Test_OutValid01(Test_OutValid01), .Test_OutValid02(Test_OutValid02), .Test_OutValid03(Test_OutValid03),
+		.Test_OutValid10(Test_OutValid10), .Test_OutValid11(Test_OutValid11), .Test_OutValid12(Test_OutValid12), .Test_OutValid13(Test_OutValid13),
+		.Test_ACC_DataOut(Test_ACC_DataOut), .Test_Accumulate(Test_Accumulate), .Acc(Acc),
+		.Test_O_In_Block_Counter(Test_O_In_Block_Counter), .Test_I_Block_Counter(Test_I_Block_Counter));
 
     initial begin
         clk = 1;
@@ -57,21 +71,28 @@ module PE_Group_tb
         #1
         aclr = 0;
 
-		W_DataInValid = 0;
+		W_DataInValid = 1;
 		I_DataInValid = 1;
-		O_DataInValid = 0;
+		O_DataInValid = 1;
 		O_DataOutRdy = 0;
 		W_DataIn = 32'h40a0_0000; //5
-		//I_DataIn = 32'h41a0_0000; //20
-		I_DataIn = 1;
-		O_DataIn = 32'h42c8_0000; //100
+		I_DataIn = 32'h41a0_0000; //20
+		O_DataIn = 32'h3f80_0000; //10
 
+		#8
+		W_DataInValid = 1;
+		I_DataInValid = 1;
+		O_DataInValid = 0;
+		O_DataOutRdy = 1;
+		
+		#24		
+		W_DataInValid = 0;
 
+		#6
+		I_DataInValid = 0;
     end
 
     always #1 clk = ~clk;
-
-	always #1 I_DataIn = I_DataIn + 1;
 		
 	
 endmodule
