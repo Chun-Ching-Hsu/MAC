@@ -18,12 +18,11 @@ module PE_Group
 		O_DataOutValid, O_DataOutRdy, O_DataOut,
 		Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03,
 		Test_O_In_PEAddr, Test_O_Out_PEAddr, Test_I_PEAddr,
-		Test_InValid00, Test_InValid01, Test_InValid02, Test_InValid03,
-		Test_InValid10, Test_InValid11, Test_InValid12, Test_InValid13,
-		Test_OutValid00, Test_OutValid01, Test_OutValid02, Test_OutValid03,
-		Test_OutValid10, Test_OutValid11, Test_OutValid12, Test_OutValid13,
+		Test_InValid0, Test_InValid1,
+		Test_OutValid0, Test_OutValid1,
 		Acc,
-		Test_ACC_DataOut, Test_Accumulate, Test_O_In_Block_Counter, Test_I_Block_Counter);
+		Test_ACC_DataOut, Test_Accumulate, Test_O_In_Block_Counter, Test_I_Block_Counter,
+		Test_NOP, TestA, TestB, Test_ACC);
 
 	input clk, aclr;
 	input W_DataInValid;
@@ -216,6 +215,12 @@ module PE_Group
 
 	wire [DataWidth - 1 : 0] O_ACCDataOut [0 : O_PEGroupSize - 1];
 	wire O_ACCDataOutValid [0 : O_PEGroupSize - 1];
+	wire O_ACCDataOutRdy [0 : O_PEGroupSize - 1];
+
+	assign O_ACCDataOutRdy[0] = (O_Out_PEAddr == 0) && O_DataOutRdy;
+	assign O_ACCDataOutRdy[1] = (O_Out_PEAddr == 1) && O_DataOutRdy;
+	assign O_ACCDataOutRdy[2] = (O_Out_PEAddr == 2) && O_DataOutRdy;
+	assign O_ACCDataOutRdy[3] = (O_Out_PEAddr == 3) && O_DataOutRdy;
 	
 	assign O_DataOut = O_ACCDataOut[O_Out_PEAddr];
 	assign O_DataOutValid = O_ACCDataOutValid[O_Out_PEAddr];
@@ -227,7 +232,17 @@ module PE_Group
 	output [BlockCountWidth - 1 : 0] Test_I_Block_Counter;
 	assign Test_I_Block_Counter = I_Block_Counter;
 	output Acc;
-	assign Acc = Test_Accumulate[1];
+	assign Acc = Test_Accumulate[0];
+	wire [DataWidth - 1 : 0] Test_DataBuf [0 : O_PEGroupSize - 1];
+	wire [DataWidth - 1 : 0] Test_DataAcc [0 : O_PEGroupSize - 1];
+	wire [BlockCountWidth - 1 : 0] Test_ACC_Counter [0 : O_PEGroupSize - 1];
+	output [3 : 0] Test_NOP;
+	output [DataWidth - 1 : 0] TestA, TestB;
+	assign TestA = Test_DataBuf[0];
+	assign TestB = Test_DataAcc[0];
+	output [BlockCountWidth - 1 : 0] Test_ACC;
+	assign Test_ACC = Test_ACC_Counter[0];
+
 	//test
 	
 	genvar i, j;
@@ -296,48 +311,37 @@ module PE_Group
 					.AccumulateCount(BlockCount), .AccumulateCountWidth(BlockCountWidth)) acc
 				(	.clk(clk), .aclr(aclr), .sclr(O_Send_Handshaking && (O_Out_PEAddr == i)), 
 					.DataInValid(O_OutValid[i][W_PEGroupSize - 1]), .DataIn(O_Out[i][W_PEGroupSize - 1]), 
-					.DataInRdy(O_OutRdy[i][W_PEGroupSize - 1]), .DataOutValid(O_ACCDataOutValid[i]), .DataOut(O_ACCDataOut[i]),
-					.Test_Accumulate(Test_Accumulate[i]));
+					.DataInRdy(O_OutRdy[i][W_PEGroupSize - 1]), .DataOutValid(O_ACCDataOutValid[i]), .DataOutRdy(O_ACCDataOutRdy[i]),
+					.DataOut(O_ACCDataOut[i]),
+					.Test_Accumulate(Test_Accumulate[i]), 
+					.Test_NOP(Test_NOP[i]), .Test_ReadyDataFromBuffer(Test_DataBuf[i]), .Test_ReadyDataFromAccumulatedData(Test_DataAcc[i]),
+					.Test_ACC_Counter(Test_ACC_Counter[i]));
 		end
 		
 	endgenerate 
 
 	//test
 	output [DataWidth - 1 : 0] Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03;
-	assign Test_O_Data00 = O_Out[1][0];
-	assign Test_O_Data01 = O_Out[1][1];
-	assign Test_O_Data02 = O_Out[1][2];
-	assign Test_O_Data03 = O_Out[1][3];
+	assign Test_O_Data00 = O_Out[0][0];
+	assign Test_O_Data01 = O_Out[0][1];
+	assign Test_O_Data02 = O_Out[0][2];
+	assign Test_O_Data03 = O_Out[0][3];
 
 	output [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
+	output [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
 	assign Test_O_In_PEAddr = O_In_PEAddr;
 	assign Test_O_Out_PEAddr = O_Out_PEAddr;
-	output [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
 	assign Test_I_PEAddr = I_PEAddr;
-	output Test_OutValid00, Test_OutValid01, Test_OutValid02, Test_OutValid03;
-	output Test_OutValid10, Test_OutValid11, Test_OutValid12, Test_OutValid13;
-	assign Test_OutValid00 = O_OutValid[0][0];
-	assign Test_OutValid01 = O_OutValid[0][1];
-	assign Test_OutValid02 = O_OutValid[0][2];
-	assign Test_OutValid03 = O_OutValid[0][3];
-	assign Test_OutValid10 = O_OutValid[3][0];
-	assign Test_OutValid11 = O_OutValid[3][1];
-	assign Test_OutValid12 = O_OutValid[3][2];
-	assign Test_OutValid13 = O_OutValid[3][3];
-	output Test_InValid00, Test_InValid01, Test_InValid02, Test_InValid03;
-	output Test_InValid10, Test_InValid11, Test_InValid12, Test_InValid13;
-	assign Test_InValid00 = O_InValid[0][0];
-	assign Test_InValid01 = O_InValid[0][1];
-	assign Test_InValid02 = O_InValid[0][2];
-	assign Test_InValid03 = O_InValid[0][3];
+	output [3:0] Test_OutValid0, Test_OutValid1;
+	assign Test_OutValid0 = {O_OutValid[0][3], O_OutValid[0][2], O_OutValid[0][1], O_OutValid[0][0]};
+	assign Test_OutValid1 = {O_OutValid[1][3], O_OutValid[1][2], O_OutValid[1][1], O_OutValid[1][0]};
 
-	assign Test_InValid10 = O_InValid[1][0];
-	assign Test_InValid11 = O_InValid[1][1];
-	assign Test_InValid12 = O_InValid[1][2];
-	assign Test_InValid13 = O_InValid[1][3];
+	output [3:0] Test_InValid0, Test_InValid1;
+	assign Test_InValid0 = {O_InValid[0][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
+	assign Test_InValid1 = {O_InValid[1][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
 
 	output [DataWidth - 1 : 0] Test_ACC_DataOut;
-	assign Test_ACC_DataOut = O_ACCDataOut[1];
+	assign Test_ACC_DataOut = O_ACCDataOut[0];
 
 	//test
 

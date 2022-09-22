@@ -29,15 +29,16 @@ module PE_Group_tb
 	wire [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
 	wire [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
 	wire [DataWidth - 1 : 0] Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03;
-	wire Test_InValid00, Test_InValid01, Test_InValid02, Test_InValid03;
-	wire Test_InValid10, Test_InValid11, Test_InValid12, Test_InValid13;
-	wire Test_OutValid00, Test_OutValid01, Test_OutValid02, Test_OutValid03;
-	wire Test_OutValid10, Test_OutValid11, Test_OutValid12, Test_OutValid13;
+	wire [3:0] Test_InValid0, Test_InValid1;
+	wire [3:0] Test_OutValid0, Test_OutValid1;
 	wire [DataWidth - 1: 0] Test_ACC_DataOut;
 	wire [3:0] Test_Accumulate;
 	wire Test_O_BLOCK_MORE_THAN_BLOCK_COUNT;
 	wire [BlockCountWidth - 1 : 0] Test_O_In_Block_Counter, Test_I_Block_Counter;
 	wire Acc;
+	wire [3 : 0] Test_NOP;
+	wire [DataWidth - 1 : 0] TestA, TestB;
+	wire [BlockCountWidth - 1 : 0] Test_ACC;
 
     PE_Group #( .DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize),
                 .W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), .I_PEGroupSize(I_PEGroupSize),
@@ -51,12 +52,11 @@ module PE_Group_tb
 		.O_DataOutValid(O_DataOutValid), .O_DataOutRdy(O_DataOutRdy), .O_DataOut(O_DataOut),
 		.Test_O_Data00(Test_O_Data00), .Test_O_Data01(Test_O_Data01), .Test_O_Data02(Test_O_Data02), .Test_O_Data03(Test_O_Data03),
 		.Test_O_In_PEAddr(Test_O_In_PEAddr), .Test_O_Out_PEAddr(Test_O_Out_PEAddr), .Test_I_PEAddr(Test_I_PEAddr),
-		.Test_InValid00(Test_InValid00), .Test_InValid01(Test_InValid01), .Test_InValid02(Test_InValid02), .Test_InValid03(Test_InValid03),
-		.Test_InValid10(Test_InValid10), .Test_InValid11(Test_InValid11), .Test_InValid12(Test_InValid12), .Test_InValid13(Test_InValid13),
-		.Test_OutValid00(Test_OutValid00), .Test_OutValid01(Test_OutValid01), .Test_OutValid02(Test_OutValid02), .Test_OutValid03(Test_OutValid03),
-		.Test_OutValid10(Test_OutValid10), .Test_OutValid11(Test_OutValid11), .Test_OutValid12(Test_OutValid12), .Test_OutValid13(Test_OutValid13),
+		.Test_InValid0(Test_InValid0), .Test_InValid1(Test_InValid1),
+		.Test_OutValid0(Test_OutValid0), .Test_OutValid1(Test_OutValid1),
 		.Test_ACC_DataOut(Test_ACC_DataOut), .Test_Accumulate(Test_Accumulate), .Acc(Acc),
-		.Test_O_In_Block_Counter(Test_O_In_Block_Counter), .Test_I_Block_Counter(Test_I_Block_Counter));
+		.Test_O_In_Block_Counter(Test_O_In_Block_Counter), .Test_I_Block_Counter(Test_I_Block_Counter),
+		.Test_NOP(Test_NOP), .TestA(TestA), .TestB(TestB), .Test_ACC(Test_ACC));
 
     initial begin
         clk = 1;
@@ -74,11 +74,11 @@ module PE_Group_tb
 		W_DataInValid = 1;
 		I_DataInValid = 1;
 		O_DataInValid = 1;
-		O_DataOutRdy = 0;
+		O_DataOutRdy = 1;
 		W_DataIn = 32'h40a0_0000; //5
 		I_DataIn = 32'h41a0_0000; //20
 		O_DataIn = 32'h3f80_0000; //10
-
+		/*
 		#8
 		W_DataInValid = 1;
 		I_DataInValid = 1;
@@ -90,6 +90,7 @@ module PE_Group_tb
 
 		#6
 		I_DataInValid = 0;
+		*/
     end
 
     always #1 clk = ~clk;
