@@ -10,13 +10,14 @@ vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\altera_mf.v}
 
 vlog -work work FIFO_Buffer.v
 vlog -work work FIFO_Buffer2.v
+vlog -work work FIFO_Buffer_ACC.v
 vlog -work work MAC_Pipeline.v
 vlog -work work Pointer.v
 
 vlog -work work FP_MUL.v
 vlog -work work FP_ADD.v
-vlog -work work NOPPipeline.v
 vlog -work work OutputDataPipeline.v
+vlog -work work NOPPipeline.v
 vlog -work work Buffer.v
 vlog -work work ValidPipeline.v
 
@@ -66,19 +67,29 @@ add wave -binary /PE_Group_tb/Test_InValid0
 add wave -binary /PE_Group_tb/Test_InValid1
 
 add wave -binary /PE_Group_tb/Test_OutValid0
-add wave -binary /PE_Group_tb/Test_OutValid1
-
-add wave -hexadecimal /PE_Group_tb/Test_ACC_DataOut
-add wave -binary /PE_Group_tb/Test_Accumulate
-add wave -binary /PE_Group_tb/Acc
+#add wave -binary /PE_Group_tb/Test_OutValid1
 
 add wave -unsigned /PE_Group_tb/Test_O_In_Block_Counter
 add wave -unsigned /PE_Group_tb/Test_I_Block_Counter
 
-add wave -binary /PE_Group_tb/Test_NOP
-add wave -hexadecimal /PE_Group_tb/TestA
-add wave -hexadecimal /PE_Group_tb/TestB
-add wave -hexadecimal /PE_Group_tb/Test_ACC
+
+add wave -hexadecimal /PE_Group_tb/Out0
+add wave -hexadecimal /PE_Group_tb/Out1
+add wave -hexadecimal /PE_Group_tb/Out2
+add wave -hexadecimal /PE_Group_tb/Out3
+
+add wave -hexadecimal /PE_Group_tb/W0
+add wave -hexadecimal /PE_Group_tb/W1
+add wave -hexadecimal /PE_Group_tb/W2
+add wave -hexadecimal /PE_Group_tb/W3
+
+add wave -hexadecimal /PE_Group_tb/I0
+add wave -hexadecimal /PE_Group_tb/I1
+add wave -hexadecimal /PE_Group_tb/I2
+add wave -hexadecimal /PE_Group_tb/I3
+add wave -hexadecimal /PE_Group_tb/I4
+add wave -hexadecimal /PE_Group_tb/I5
+add wave -hexadecimal /PE_Group_tb/I6
 
 run 900ps
 wave zoomrange 0ps 1000ps

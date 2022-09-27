@@ -8,8 +8,8 @@ vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\220model.v}
 vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\altera_mf.v}
 
 vlog -work work FP_ADD.v
-vlog -work work NOPPipeline.v
 vlog -work work ValidPipeline.v
+vlog -work work NOPPipeline.v
 vlog -work work Pointer.v
 vlog -work work FIFO_Buffer_ACC.v
 
@@ -38,6 +38,9 @@ add wave -hexadecimal /ACC_tb/DataIn
 add wave -hexadecimal /ACC_tb/DataOut
 add wave -hexadecimal /ACC_tb/Test_ReadyDataFromBuffer
 add wave -hexadecimal /ACC_tb/Test_ReadyDataFromAccumulatedData
+add wave -binary /ACC_tb/Test_Ready_Empty
+add wave -binary /ACC_tb/Test_Add_Busy
+add wave -binary /ACC_tb/Test_Rec_Handshaking
 
 run 200ps
 wave zoomrange 0ps 250ps

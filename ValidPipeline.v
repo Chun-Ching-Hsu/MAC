@@ -1,29 +1,29 @@
 //Multiply + Add = 5 + 2 = 7 Cycles latency
 module ValidPipeline
 	#(parameter Stages = 7)
-	(clk, aclr, NOPIn, NOPOut);
+	(clk, aclr, ValidIn, ValidOut);
 	input clk, aclr;
-	input NOPIn;
-	output NOPOut;
+	input ValidIn;
+	output ValidOut;
 	
-	reg [Stages-1:0] NOPreg;
+	reg [Stages-1:0] Validreg;
 	
 	integer index;
 	
 	always@(posedge clk, posedge aclr) begin
 		if(aclr) begin
 			for(index = 0; index < Stages; index = index + 1) begin: clearRegs
-				NOPreg[index] <= 0;
+				Validreg[index] <= 0;
 			end
 		end
 		else begin
-			NOPreg[0] <= NOPIn;
+			Validreg[0] <= ValidIn;
 			for(index = 0; index < Stages - 1; index = index + 1) begin: Tranmit
-				NOPreg[index+1] <= NOPreg[index];
+				Validreg[index+1] <= Validreg[index];
 			end		
 		end
 	end
 
-	assign NOPOut = NOPreg[Stages-1];
+	assign ValidOut = Validreg[Stages-1];
 	
 endmodule

@@ -9,7 +9,7 @@ module PE_Group
 		parameter O_PEAddrWidth = 2,
 		parameter I_PEAddrWidth = 3,
 		parameter BlockCount = 4,
-		parameter BlockCountWidth = 3,
+		parameter BlockCountWidth = 2,
 		parameter ACC_Pipeline_Stages = 7) 
 	(	clk, aclr,
 		W_DataInValid, W_DataInRdy, W_DataIn,
@@ -20,9 +20,10 @@ module PE_Group
 		Test_O_In_PEAddr, Test_O_Out_PEAddr, Test_I_PEAddr,
 		Test_InValid0, Test_InValid1,
 		Test_OutValid0, Test_OutValid1,
-		Acc,
-		Test_ACC_DataOut, Test_Accumulate, Test_O_In_Block_Counter, Test_I_Block_Counter,
-		Test_NOP, TestA, TestB, Test_ACC);
+		Test_O_In_Block_Counter, Test_I_Block_Counter,
+		Out0, Out1, Out2, Out3,
+		W0, W1, W2, W3,
+		I0, I1, I2, I3, I4, I5, I6);
 
 	input clk, aclr;
 	input W_DataInValid;
@@ -226,23 +227,10 @@ module PE_Group
 	assign O_DataOutValid = O_ACCDataOutValid[O_Out_PEAddr];
 
 	//test
-	output [3:0] Test_Accumulate;
 	output [BlockCountWidth - 1 : 0] Test_O_In_Block_Counter;
 	assign Test_O_In_Block_Counter = O_In_Block_Counter;
 	output [BlockCountWidth - 1 : 0] Test_I_Block_Counter;
 	assign Test_I_Block_Counter = I_Block_Counter;
-	output Acc;
-	assign Acc = Test_Accumulate[0];
-	wire [DataWidth - 1 : 0] Test_DataBuf [0 : O_PEGroupSize - 1];
-	wire [DataWidth - 1 : 0] Test_DataAcc [0 : O_PEGroupSize - 1];
-	wire [BlockCountWidth - 1 : 0] Test_ACC_Counter [0 : O_PEGroupSize - 1];
-	output [3 : 0] Test_NOP;
-	output [DataWidth - 1 : 0] TestA, TestB;
-	assign TestA = Test_DataBuf[0];
-	assign TestB = Test_DataAcc[0];
-	output [BlockCountWidth - 1 : 0] Test_ACC;
-	assign Test_ACC = Test_ACC_Counter[0];
-
 	//test
 	
 	genvar i, j;
@@ -308,14 +296,11 @@ module PE_Group
 		
 		for(i = 0; i < O_PEGroupSize; i = i + 1) begin: generate_ACC
 			ACC #(	.DataWidth(DataWidth), .Pipeline_Stages(ACC_Pipeline_Stages), 
-					.AccumulateCount(BlockCount), .AccumulateCountWidth(BlockCountWidth)) acc
-				(	.clk(clk), .aclr(aclr), .sclr(O_Send_Handshaking && (O_Out_PEAddr == i)), 
+					.NOPCount(BlockCount), .NOPCountWidth(BlockCountWidth)) acc
+				(	.clk(clk), .aclr(aclr), 
 					.DataInValid(O_OutValid[i][W_PEGroupSize - 1]), .DataIn(O_Out[i][W_PEGroupSize - 1]), 
 					.DataInRdy(O_OutRdy[i][W_PEGroupSize - 1]), .DataOutValid(O_ACCDataOutValid[i]), .DataOutRdy(O_ACCDataOutRdy[i]),
-					.DataOut(O_ACCDataOut[i]),
-					.Test_Accumulate(Test_Accumulate[i]), 
-					.Test_NOP(Test_NOP[i]), .Test_ReadyDataFromBuffer(Test_DataBuf[i]), .Test_ReadyDataFromAccumulatedData(Test_DataAcc[i]),
-					.Test_ACC_Counter(Test_ACC_Counter[i]));
+					.DataOut(O_ACCDataOut[i]));
 		end
 		
 	endgenerate 
@@ -339,10 +324,28 @@ module PE_Group
 	output [3:0] Test_InValid0, Test_InValid1;
 	assign Test_InValid0 = {O_InValid[0][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
 	assign Test_InValid1 = {O_InValid[1][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
+	
+	//examine the input of data
 
-	output [DataWidth - 1 : 0] Test_ACC_DataOut;
-	assign Test_ACC_DataOut = O_ACCDataOut[0];
-
+	output [DataWidth - 1 : 0] Out0, Out1, Out2, Out3;
+	output [DataWidth - 1 : 0] W0, W1, W2, W3;
+	output [DataWidth - 1 : 0] I0, I1, I2, I3, I4, I5, I6;
+	assign Out0 = O_In[0][0];
+	assign Out1 = O_In[1][0];
+	assign Out2 = O_In[2][0];
+	assign Out3 = O_In[3][0];
+	assign W0 = W_In[0][0];
+	assign W1 = W_In[0][1];
+	assign W2 = W_In[0][2];
+	assign W3 = W_In[0][3];
+	assign I0 = I_In[0][0];
+	assign I1 = I_In[1][0];
+	assign I2 = I_In[2][0];
+	assign I3 = I_In[3][0];
+	assign I4 = I_In[3][1];
+	assign I5 = I_In[3][2];
+	assign I6 = I_In[3][3];
+	
 	//test
 
 endmodule 
