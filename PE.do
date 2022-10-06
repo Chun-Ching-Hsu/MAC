@@ -8,16 +8,19 @@ vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\220model.v}
 vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\altera_mf.v}
 
 
+vlog -work work Buffer.v
+vlog -work work Pointer.v
+vlog -work work Round.v
+vlog -work work Ready_16.v
+
 vlog -work work FIFO_Buffer.v
 vlog -work work FIFO_Buffer2.v
 vlog -work work MAC_Pipeline.v
-vlog -work work Pointer.v
 
 vlog -work work FP_MUL.v
 vlog -work work FP_ADD.v
 vlog -work work NOPPipeline.v
 vlog -work work OutputDataPipeline.v
-vlog -work work Buffer.v
 
 vlog -work work PE.v
 vlog -work work PE_tb.v
@@ -28,7 +31,7 @@ vsim -t ps work.PE_tb
 view wave
 
 add wave -binary /PE_tb/clk
-add wave -binary /PE_tb/rst
+add wave -binary /PE_tb/aclr
 
 add wave -binary /PE_tb/W_DataInValid
 add wave -binary /PE_tb/W_DataInRdy
@@ -54,5 +57,5 @@ add wave -hexadecimal /PE_tb/I_DataOut
 add wave -hexadecimal /PE_tb/O_DataOut
 
 
-run 40ps
-wave zoomrange 0ps 65ps
+run 100ps
+wave zoomrange 0ps 150ps

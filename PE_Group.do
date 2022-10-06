@@ -8,17 +8,21 @@ vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\220model.v}
 vlog -work work {E:\intelFPGA_lite\18.1\quartus\eda\sim_lib\altera_mf.v}
 
 
+vlog -work work Buffer.v
+vlog -work work Pointer.v
+vlog -work work Round.v
+vlog -work work Ready_16.v
+vlog -work work Ready_4.v
+
 vlog -work work FIFO_Buffer.v
 vlog -work work FIFO_Buffer2.v
 vlog -work work FIFO_Buffer_ACC.v
 vlog -work work MAC_Pipeline.v
-vlog -work work Pointer.v
 
 vlog -work work FP_MUL.v
 vlog -work work FP_ADD.v
 vlog -work work OutputDataPipeline.v
 vlog -work work NOPPipeline.v
-vlog -work work Buffer.v
 vlog -work work ValidPipeline.v
 
 vlog -work work PE.v
@@ -59,18 +63,38 @@ add wave -hexadecimal /PE_Group_tb/Test_O_Data01
 add wave -hexadecimal /PE_Group_tb/Test_O_Data02
 add wave -hexadecimal /PE_Group_tb/Test_O_Data03
 
+add wave -binary /PE_Group_tb/Test_O_OutValid
+
+add wave -hexadecimal /PE_Group_tb/Test_O_DataIn00
+add wave -hexadecimal /PE_Group_tb/Test_O_DataIn01
+add wave -hexadecimal /PE_Group_tb/Test_O_DataIn02
+add wave -hexadecimal /PE_Group_tb/Test_O_DataIn03
+
+add wave -binary /PE_Group_tb/Test_O_InValid
+add wave -binary /PE_Group_tb/Test_O_InRdy
+
+add wave -hexadecimal /PE_Group_tb/Test_W_DataIn00
+add wave -hexadecimal /PE_Group_tb/Test_W_DataIn01
+add wave -hexadecimal /PE_Group_tb/Test_W_DataIn02
+add wave -hexadecimal /PE_Group_tb/Test_W_DataIn03
+
+add wave -binary /PE_Group_tb/Test_W_InValid
+add wave -binary /PE_Group_tb/Test_W_InRdy
+
+add wave -hexadecimal /PE_Group_tb/Test_I_DataIn00
+add wave -hexadecimal /PE_Group_tb/Test_I_DataIn01
+add wave -hexadecimal /PE_Group_tb/Test_I_DataIn02
+add wave -hexadecimal /PE_Group_tb/Test_I_DataIn03
+
+add wave -binary /PE_Group_tb/Test_I_InValid
+add wave -binary /PE_Group_tb/Test_I_InRdy
+
 add wave -unsigned /PE_Group_tb/Test_O_In_PEAddr
 add wave -unsigned /PE_Group_tb/Test_O_Out_PEAddr
 add wave -unsigned /PE_Group_tb/Test_I_PEAddr
 
-add wave -binary /PE_Group_tb/Test_InValid0
-add wave -binary /PE_Group_tb/Test_InValid1
-
-add wave -binary /PE_Group_tb/Test_OutValid0
-#add wave -binary /PE_Group_tb/Test_OutValid1
-
-add wave -unsigned /PE_Group_tb/Test_O_In_Block_Counter
-add wave -unsigned /PE_Group_tb/Test_I_Block_Counter
+#add wave -unsigned /PE_Group_tb/Test_O_In_Block_Counter
+#add wave -unsigned /PE_Group_tb/Test_I_Block_Counter
 
 
 add wave -hexadecimal /PE_Group_tb/Out0

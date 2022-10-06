@@ -2,12 +2,14 @@
 //same distance means same pattern
 //and the shift operation should be rotate left shift
 
-module Ready
-    #(  parameter BufferWidth = 2,
-        parameter BufferSize = 4,
-        parameter PseudoBufferWidth = 3,
-        parameter PseudoBufferSize = 8)
+module Ready_4
     (W_Addr, R_Addr, Round, Ready);
+
+    parameter BufferWidth = 2;
+    parameter BufferSize = 4;
+    parameter PseudoBufferWidth = 3;
+    parameter PseudoBufferSize = 8;
+
     input [BufferWidth-1:0] W_Addr, R_Addr;
     input Round;
 
@@ -20,21 +22,21 @@ module Ready
     
     always @(*)begin
         case(Distance)
-            3'b 000: Pattern = 4'b 0000;
-            3'b 001: Pattern = 4'b 0001;
-            3'b 010: Pattern = 4'b 0011;
-            3'b 011: Pattern = 4'b 0111;
-            3'b 100: Pattern = 4'b 1111;
+            0: Pattern = 4'b 0000;
+            1: Pattern = 4'b 0001;
+            2: Pattern = 4'b 0011;
+            3: Pattern = 4'b 0111;
+            4: Pattern = 4'b 1111;
             default: Pattern = 4'b 0000;
         endcase
         TmpReady = Pattern << R_Addr;
         if (Round) begin
             //Circular Shift    
             case(R_Addr)
-                2'b 00: Ready = TmpReady[3:0];
-                2'b 01: Ready = {TmpReady[3:1],TmpReady[4]};
-                2'b 10: Ready = {TmpReady[3:2],TmpReady[5:4]};
-                2'b 11: Ready = {TmpReady[3],TmpReady[6:4]};
+                0: Ready = TmpReady[3:0];
+                1: Ready = {TmpReady[3:1],TmpReady[4]};
+                2: Ready = {TmpReady[3:2],TmpReady[5:4]};
+                3: Ready = {TmpReady[3],TmpReady[6:4]};
                 default: Ready = 4'b 0000;
             endcase
         end

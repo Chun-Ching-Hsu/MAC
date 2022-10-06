@@ -79,11 +79,11 @@ module ACC
             NOPCounter( 	.clk(clk), .aclr(aclr), .sclr(sclr || (~NOPIn && NOP_COUNTER_EQUAL_TO_ACCUMULATE_COUNT)), 
 								.EN(~NOPIn), .Pointer(NOP_Counter));
 
-    FIFO_Buffer_ACC #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer_ACC #(.DataWidth(DataWidth))
             ReadyData_Buffer(.clk(clk), .aclr(aclr), .Pop(~NOPIn), .Push(Rec_Handshaking), .DataIn(DataIn),
                             .Full(Ready_Full), .Empty(Ready_Empty), .DataOut(ReadyDataFromBuffer));
 	
-    FIFO_Buffer_ACC #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer_ACC #(.DataWidth(DataWidth))
             OutData_Buffer(.clk(clk), .aclr(aclr), .Pop(Send_Handshaking), .Push(OutData_DataInValid), .DataIn(AccumulatedResult),
                             .Full(Out_Full), .Empty(Out_Empty), .DataOut(DataOut));
 

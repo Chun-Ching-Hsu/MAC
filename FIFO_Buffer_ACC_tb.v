@@ -1,17 +1,18 @@
 `timescale 1ps/1ps
 module FIFO_Buffer_ACC_tb
-    #(  parameter DataWidth = 32,
-        parameter BufferWidth = 2,
-        parameter BufferSize = 4)();
+    #(  parameter DataWidth = 32)();
+    parameter BufferWidth = 2;
+    parameter BufferSize = 4;
 
-        reg clk, aclr;
-        reg Pop, Push;
-        reg [DataWidth-1:0] DataIn;
+    reg clk, aclr;
+    reg Pop, Push;
+    reg [DataWidth-1:0] DataIn;
 
-        wire Empty, Full;
-        wire [DataWidth-1:0] DataOut, DataOut2;
+    wire Empty, Full;
+    wire [DataWidth-1:0] DataOut;
 
-    FIFO_Buffer_ACC #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize)) 
+
+    FIFO_Buffer_ACC #(.DataWidth(DataWidth)) 
         dut (.clk(clk), .aclr(aclr), .Pop(Pop), .Push(Push), .DataIn(DataIn),
         .Empty(Empty), .Full(Full), .DataOut(DataOut));
 

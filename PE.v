@@ -1,8 +1,6 @@
 
 module PE
     #(  parameter DataWidth = 32,
-        parameter BufferWidth = 2,
-        parameter BufferSize = 4,
         parameter MUL_Pipeline_Stages = 5,
         parameter ADD_Pipeline_Stages = 7,
         parameter Pipeline_Stages = MUL_Pipeline_Stages + ADD_Pipeline_Stages)
@@ -13,7 +11,10 @@ module PE
         I_DataOut, I_DataOutValid, I_DataOutRdy,
         O_DataInValid, O_DataInRdy, O_DataIn,
         O_DataOut, O_DataOutValid, O_DataOutRdy);
-		  	
+
+    parameter BufferWidth = 4;
+    parameter BufferSize = 16;
+	
     input [DataWidth-1:0] W_DataIn, I_DataIn, O_DataIn;
     input W_DataInValid, W_DataOutRdy;
     input I_DataInValid, I_DataOutRdy;
@@ -45,15 +46,15 @@ module PE
 
     wire NOPIn, NOPOut;
 
-    FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer #(.DataWidth(DataWidth))
                     W_Buffer(.clk(clk), .aclr(aclr), .Pop1(W_Send_Handshaking), .Pop2(~NOPIn), .Push(W_Rec_Handshaking), .DataIn(W_DataIn),
                             .Empty(W_Empty), .Full(W_Full), .ReadyM(W_ReadyM), .DataOut1(W_DataOut), .DataOut2(W_DataOut2));
 
-    FIFO_Buffer #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer #(.DataWidth(DataWidth))
                     I_Buffer(.clk(clk), .aclr(aclr), .Pop1(I_Send_Handshaking), .Pop2(~NOPIn), .Push(I_Rec_Handshaking), .DataIn(I_DataIn),
                             .Empty(I_Empty), .Full(I_Full), .ReadyM(I_ReadyM), .DataOut1(I_DataOut), .DataOut2(I_DataOut2));
 
-    FIFO_Buffer2    #(.DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize))
+    FIFO_Buffer2    #(.DataWidth(DataWidth))
                     O_Buffer(.clk(clk), .aclr(aclr), .Pop2(~NOPIn), .Push(O_Rec_Handshaking), .DataIn(O_DataIn),
                             .Full(O_Full), .ReadyM(O_ReadyM), .DataOut2(O_DataOut2));
 

@@ -1,7 +1,7 @@
 module PE_Group 
 	#(	parameter DataWidth = 32,
-		parameter BufferWidth = 2,
-		parameter BufferSize = 4,
+		parameter BufferWidth = 4,
+		parameter BufferSize = 16,
 		parameter W_PEGroupSize = 4,
 		parameter O_PEGroupSize = 4,
 		parameter I_PEGroupSize = W_PEGroupSize + O_PEGroupSize - 1,
@@ -16,10 +16,13 @@ module PE_Group
 		I_DataInValid, I_DataInRdy, I_DataIn,
 		O_DataInValid, O_DataInRdy, O_DataIn,
 		O_DataOutValid, O_DataOutRdy, O_DataOut,
-		Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03,
+		Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03, Test_O_OutValid,
+		Test_O_DataIn00, Test_O_DataIn01, Test_O_DataIn02, Test_O_DataIn03,
+		Test_W_DataIn00, Test_W_DataIn01, Test_W_DataIn02, Test_W_DataIn03,
+		Test_I_DataIn00, Test_I_DataIn01, Test_I_DataIn02, Test_I_DataIn03,
+		Test_O_InValid, Test_W_InValid, Test_I_InValid,
+		Test_O_InRdy, Test_W_InRdy, Test_I_InRdy,
 		Test_O_In_PEAddr, Test_O_Out_PEAddr, Test_I_PEAddr,
-		Test_InValid0, Test_InValid1,
-		Test_OutValid0, Test_OutValid1,
 		Test_O_In_Block_Counter, Test_I_Block_Counter,
 		Out0, Out1, Out2, Out3,
 		W0, W1, W2, W3,
@@ -238,7 +241,8 @@ module PE_Group
 	generate    
 		for ( i = 0 ; i < O_PEGroupSize ; i = i + 1) begin :generate_PE_i
 			for ( j = 0 ; j < W_PEGroupSize ; j = j + 1)begin :generate_PE_j   
-				PE PE_buffer(
+				PE #(.DataWidth(DataWidth))
+				PE_buffer(
 						.clk(clk),
 						.aclr(aclr),
 						
@@ -312,18 +316,46 @@ module PE_Group
 	assign Test_O_Data02 = O_Out[0][2];
 	assign Test_O_Data03 = O_Out[0][3];
 
+	output [3:0] Test_O_OutValid;
+	assign Test_O_OutValid = {O_OutValid[0][3], O_OutValid[0][2], O_OutValid[0][1], O_OutValid[0][0]};
+
+	output [DataWidth - 1 : 0] Test_O_DataIn00, Test_O_DataIn01, Test_O_DataIn02, Test_O_DataIn03;
+	output [DataWidth - 1 : 0] Test_W_DataIn00, Test_W_DataIn01, Test_W_DataIn02, Test_W_DataIn03;
+	output [DataWidth - 1 : 0] Test_I_DataIn00, Test_I_DataIn01, Test_I_DataIn02, Test_I_DataIn03;
+	assign Test_O_DataIn00 = O_In[0][0];
+	assign Test_O_DataIn01 = O_In[0][1];
+	assign Test_O_DataIn02 = O_In[0][2];
+	assign Test_O_DataIn03 = O_In[0][3];
+
+	assign Test_W_DataIn00 = W_In[0][0];
+	assign Test_W_DataIn01 = W_In[0][1];
+	assign Test_W_DataIn02 = W_In[0][2];
+	assign Test_W_DataIn03 = W_In[0][3];
+
+	assign Test_I_DataIn00 = I_In[0][0];
+	assign Test_I_DataIn01 = I_In[0][1];
+	assign Test_I_DataIn02 = I_In[0][2];
+	assign Test_I_DataIn03 = I_In[0][3];
+
+	output [3:0] Test_O_InValid;
+	output [3:0] Test_W_InValid;
+	output [3:0] Test_I_InValid;
+	assign Test_O_InValid = {O_InValid[0][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
+	assign Test_W_InValid = {W_InValid[0][3], W_InValid[0][2], W_InValid[0][1], W_InValid[0][0]};
+	assign Test_I_InValid = {I_InValid[0][3], I_InValid[0][2], I_InValid[0][1], I_InValid[0][0]};
+	
+	output [3:0] Test_O_InRdy;
+	output [3:0] Test_W_InRdy;
+	output [3:0] Test_I_InRdy;
+	assign Test_O_InRdy = {O_InRdy[0][3], O_InRdy[0][2], O_InRdy[0][1], O_InRdy[0][0]};
+	assign Test_W_InRdy = {W_InRdy[0][3], W_InRdy[0][2], W_InRdy[0][1], W_InRdy[0][0]};
+	assign Test_I_InRdy = {I_InRdy[0][3], I_InRdy[0][2], I_InRdy[0][1], I_InRdy[0][0]};
+	
 	output [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
 	output [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
 	assign Test_O_In_PEAddr = O_In_PEAddr;
 	assign Test_O_Out_PEAddr = O_Out_PEAddr;
 	assign Test_I_PEAddr = I_PEAddr;
-	output [3:0] Test_OutValid0, Test_OutValid1;
-	assign Test_OutValid0 = {O_OutValid[0][3], O_OutValid[0][2], O_OutValid[0][1], O_OutValid[0][0]};
-	assign Test_OutValid1 = {O_OutValid[1][3], O_OutValid[1][2], O_OutValid[1][1], O_OutValid[1][0]};
-
-	output [3:0] Test_InValid0, Test_InValid1;
-	assign Test_InValid0 = {O_InValid[0][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
-	assign Test_InValid1 = {O_InValid[1][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
 	
 	//examine the input of data
 

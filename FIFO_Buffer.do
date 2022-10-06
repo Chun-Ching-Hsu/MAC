@@ -9,7 +9,7 @@ vmap work work
 
 vlog -work work Buffer.v
 vlog -work work Pointer.v
-vlog -work work Ready.v
+vlog -work work Ready_16.v
 vlog -work work Round.v
 vlog -work work FIFO_Buffer.v
 vlog -work work FIFO_Buffer_tb.v
@@ -32,6 +32,5 @@ add wave -binary /FIFO_Buffer_tb/ReadyM
 add wave -unsigned /FIFO_Buffer_tb/DataOut1
 add wave -unsigned /FIFO_Buffer_tb/DataOut2
 
-
-run 40ps
+run 60ps
 wave zoomrange 0ps 65ps

@@ -1,9 +1,10 @@
 //for ACC data
 module FIFO_Buffer_ACC
-        #(      parameter DataWidth = 32,
-                parameter BufferWidth = 2,
-                parameter BufferSize = 4)
+        #(parameter DataWidth = 32)
 	(clk, aclr, Pop, Push, DataIn, Empty, Full, DataOut);
+
+        parameter BufferWidth = 2;
+        parameter BufferSize = 4;
 
         input clk, aclr;
         input Pop, Push;
@@ -26,11 +27,11 @@ module FIFO_Buffer_ACC
         Pointer #(.BufferWidth(BufferWidth))
                 HP( .clk(clk), .aclr(aclr), .EN(Pop), .Pointer(R_Addr));
 
-        Round #(.BufferWidth(BufferWidth))
+        Round #(.BufferWidth(BufferWidth), .BufferSize(BufferSize))
                 RoundMUnit(.clk(clk), .aclr(aclr), .Push(Push), .Pop(Pop), .W_Addr(W_Addr), .R_Addr(R_Addr), .Round(Round));
 
-        Ready #(.BufferWidth(BufferWidth), .BufferSize(BufferSize), .PseudoBufferWidth(BufferWidth+1), .PseudoBufferSize(BufferSize+BufferSize))
-                ReadyUnit(.W_Addr(W_Addr), .R_Addr(R_Addr), .Round(Round), .Ready(Valid));
+        Ready_4 ReadyUnit
+                (.W_Addr(W_Addr), .R_Addr(R_Addr), .Round(Round), .Ready(Valid));
 
         assign Full = Valid[0] & Valid[1] & Valid[2] & Valid[3];
         assign Empty = ~Valid[0] & ~Valid[1] & ~Valid[2] & ~Valid[3];
