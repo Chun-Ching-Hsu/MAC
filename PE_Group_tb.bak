@@ -1,0 +1,470 @@
+`timescale 1ps/1ps
+module PE_Group_tb
+	#(	parameter DataWidth = 32,
+		parameter BufferWidth = 4,
+		parameter BufferSize = 16,
+		parameter W_PEGroupSize = 4,
+		parameter O_PEGroupSize = 4,
+		parameter I_PEGroupSize = 7,
+		parameter W_PEAddrWidth = 2,
+		parameter O_PEAddrWidth = 2,
+		parameter I_PEAddrWidth = 3,
+		parameter BlockCount = 2,
+		parameter BlockCountWidth = 1)();
+    
+	reg clk, aclr;
+	reg W_DataInValid;
+	reg I_DataInValid;
+	reg O_DataInValid, O_DataOutRdy;
+	reg [DataWidth - 1 : 0] W_DataIn;
+	reg [DataWidth - 1 : 0] O_DataIn;
+	reg [DataWidth - 1 : 0] I_DataIn;
+	
+	wire [DataWidth - 1: 0] O_DataOut;
+	wire W_DataInRdy;
+	wire I_DataInRdy;
+	wire O_DataInRdy, O_DataOutValid;
+
+	//test
+	wire [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
+	wire [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
+	wire [DataWidth - 1 : 0] Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03;
+	wire [BlockCountWidth - 1 : 0] Test_O_In_Block_Counter, Test_I_Block_Counter;
+	wire [DataWidth - 1 : 0] Out0, Out1, Out2, Out3;
+	wire [DataWidth - 1 : 0] W0, W1, W2, W3;
+	wire [DataWidth - 1 : 0] I0, I1, I2, I3, I4, I5, I6;
+	wire [3 : 0] Test_O_OutValid, Test_O_InValid, Test_W_InValid, Test_I_InValid, Test_O_InRdy, Test_W_InRdy, Test_I_InRdy;
+	wire [DataWidth - 1 : 0] Test_O_DataIn00, Test_O_DataIn01, Test_O_DataIn02, Test_O_DataIn03;
+	wire [DataWidth - 1 : 0] Test_W_DataIn00, Test_W_DataIn01, Test_W_DataIn02, Test_W_DataIn03;
+	wire [DataWidth - 1 : 0] Test_I_DataIn00, Test_I_DataIn01, Test_I_DataIn02, Test_I_DataIn03;
+
+    PE_Group #( .DataWidth(DataWidth), .BufferWidth(BufferWidth), .BufferSize(BufferSize),
+                .W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), .I_PEGroupSize(I_PEGroupSize),
+				.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth),
+				.BlockCount(BlockCount), .BlockCountWidth(BlockCountWidth))
+    dut
+	(   .clk(clk), .aclr(aclr),
+		.W_DataInValid(W_DataInValid), .W_DataInRdy(W_DataInRdy), .W_DataIn(W_DataIn),
+		.I_DataInValid(I_DataInValid), .I_DataInRdy(I_DataInRdy), .I_DataIn(I_DataIn),
+		.O_DataInValid(O_DataInValid), .O_DataInRdy(O_DataInRdy), .O_DataIn(O_DataIn),
+		.O_DataOutValid(O_DataOutValid), .O_DataOutRdy(O_DataOutRdy), .O_DataOut(O_DataOut),
+		.Test_O_Data00(Test_O_Data00), .Test_O_Data01(Test_O_Data01), .Test_O_Data02(Test_O_Data02), .Test_O_Data03(Test_O_Data03),
+		.Test_O_OutValid(Test_O_OutValid),
+		.Test_O_DataIn00(Test_O_DataIn00), .Test_O_DataIn01(Test_O_DataIn01), .Test_O_DataIn02(Test_O_DataIn02), .Test_O_DataIn03(Test_O_DataIn03),
+		.Test_W_DataIn00(Test_W_DataIn00), .Test_W_DataIn01(Test_W_DataIn01), .Test_W_DataIn02(Test_W_DataIn02), .Test_W_DataIn03(Test_W_DataIn03),
+		.Test_I_DataIn00(Test_I_DataIn00), .Test_I_DataIn01(Test_I_DataIn01), .Test_I_DataIn02(Test_I_DataIn02), .Test_I_DataIn03(Test_I_DataIn03),
+		.Test_O_InValid(Test_O_InValid), .Test_W_InValid(Test_W_InValid), .Test_I_InValid(Test_I_InValid),
+		.Test_O_InRdy(Test_O_InRdy), .Test_W_InRdy(Test_W_InRdy), .Test_I_InRdy(Test_I_InRdy),
+		.Test_O_In_PEAddr(Test_O_In_PEAddr), .Test_O_Out_PEAddr(Test_O_Out_PEAddr), .Test_I_PEAddr(Test_I_PEAddr),
+		.Test_O_In_Block_Counter(Test_O_In_Block_Counter), .Test_I_Block_Counter(Test_I_Block_Counter),
+		.Out0(Out0), .Out1(Out1), .Out2(Out2), .Out3(Out3),
+		.W0(W0), .W1(W1), .W2(W2), .W3(W3),
+		.I0(I0), .I1(I1), .I2(I2), .I3(I3), .I4(I4), .I5(I5), .I6(I6));
+
+	parameter W_Size = 8;
+	parameter I_Size = 15;
+	parameter O_Size = 8;
+
+	parameter W_TileSize = 8;
+	parameter I_TileSize = 11;
+	parameter O_TileSize = 4;
+
+	parameter W_On_ReadTimes = (O_Size / O_TileSize) * (O_TileSize / O_PEGroupSize) * (W_Size / W_TileSize) * (W_TileSize / W_PEGroupSize) * W_PEGroupSize;
+	parameter I_On_ReadTimes = (O_Size / O_TileSize) * (O_TileSize / O_PEGroupSize) * (W_Size / W_TileSize) * (O_PEGroupSize + W_TileSize - 1);
+	parameter O_On_ReadTimes = (O_Size / O_TileSize) * (O_TileSize / O_PEGroupSize) * O_PEGroupSize * (W_Size / W_TileSize);
+
+	parameter W_Off_ReadTimes = (O_Size / O_TileSize) * (W_Size / W_TileSize) * W_TileSize;
+	parameter I_Off_ReadTimes = (O_Size / O_TileSize) * (W_Size / W_TileSize) * (O_PEGroupSize + W_TileSize - 1);
+	parameter O_Off_ReadTimes = (O_Size / O_TileSize) * O_TileSize;
+	
+	parameter ReadTimesWidth = 32;
+
+	integer W_ptr = 0;
+	integer I_ptr = 0;
+	integer O_ptr = 0;
+
+	integer W_Count = 0;
+	integer I_Count = 0;
+	integer O_Count = 0;
+
+	reg [DataWidth-1:0] W_Buffer [0:W_Size-1];
+	reg [DataWidth-1:0] I_Buffer [0:I_Size-1];
+	reg [DataWidth-1:0] O_Buffer [0:O_Size-1];
+	reg [DataWidth-1:0] Ans_Buffer [0:O_Size-1];
+	
+	reg [ReadTimesWidth-1:0] W_On_Addr_Buffer [0:W_On_ReadTimes-1];
+	reg [ReadTimesWidth-1:0] I_On_Addr_Buffer [0:I_On_ReadTimes-1];
+	reg [ReadTimesWidth-1:0] O_On_Addr_Buffer [0:O_On_ReadTimes-1];
+
+	reg [ReadTimesWidth-1:0] W_Off_Addr_Buffer [0:W_Off_ReadTimes-1];
+	reg [ReadTimesWidth-1:0] I_Off_Addr_Buffer [0:I_Off_ReadTimes-1];
+	reg [ReadTimesWidth-1:0] O_Off_Addr_Buffer [0:O_Off_ReadTimes-1];
+	
+	integer i;
+	integer Ans_ptr = 0;
+
+	initial begin
+		$readmemb("Data/W_Data.txt",W_Buffer);
+		$readmemb("Data/I_Data.txt",I_Buffer);
+		$readmemb("Data/O_Data.txt",O_Buffer);
+		$display("Weight Data");
+		for (i = 0; i < W_Size; i = i + 1) $display("%d: %h", i, W_Buffer[i]);
+		$display("Input Data");
+		for (i = 0; i < I_Size; i = i + 1) $display("%d: %h", i, I_Buffer[i]);
+		$display("Output Data");
+		for (i = 0; i < O_Size; i = i + 1) $display("%d: %h", i, O_Buffer[i]);
+	end
+	initial begin
+		clk = 1;
+		aclr = 1;
+		W_DataInValid = 0;
+		I_DataInValid = 0;
+		O_DataInValid = 0;
+		O_DataOutRdy = 0;
+		W_DataIn = 0;
+		I_DataIn = 0;
+		O_DataIn = 0;
+		#1
+		aclr = 0;
+		O_DataOutRdy = 1;
+	end
+
+
+
+	//examine O_DataOutValid in each cycle, if DataOutValid is 1, write O_DataOut into Ans_Buffer
+	always #2 begin
+		if(O_DataOutValid) begin
+			Ans_Buffer[Ans_ptr] = O_DataOut;
+			$display("%h", O_DataOut);
+			Ans_ptr = Ans_ptr + 1;
+		end
+	end
+
+	//Weight Data
+	initial begin
+		#1
+		//Tile 0
+
+		//Block 0
+
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[0];
+        W_DataIn = 32'h40a00000; //5
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[1];
+        W_DataIn = 32'h41200000; //10
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[2];
+        W_DataIn = 32'h41700000; //15
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[3];
+        W_DataIn = 32'h41a00000; //20
+		
+		#2
+		W_DataInValid = 0;
+		//End of Block 0
+		
+		//Block 1
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[4];
+        W_DataIn = 32'h40a00000; //5
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[5];
+        W_DataIn = 32'h41200000; //10
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[6];
+        W_DataIn = 32'h41700000; //15
+		
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[7];
+        W_DataIn = 32'h41a00000; //20
+		
+		#2
+		W_DataInValid = 0;
+		
+		//End of Block 1
+
+		//End of Tile 0
+		
+		#2
+		
+		//Tile 1
+		//Block 0
+
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[0];
+        W_DataIn = 32'h40a00000; //5
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[1];
+        W_DataIn = 32'h41200000; //10
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[2];
+        W_DataIn = 32'h41700000; //15
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[3];
+        W_DataIn = 32'h41a00000; //20
+		
+		#2
+		W_DataInValid = 0;
+		//End of Block 0
+		
+		//Block 1
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[4];
+        W_DataIn = 32'h40a00000; //5
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[5];
+        W_DataIn = 32'h41200000; //10
+
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[6];
+        W_DataIn = 32'h41700000; //15
+		
+		#2
+		W_DataInValid = 1;
+		//W_DataIn = W_Buffer[7];
+        W_DataIn = 32'h41a00000; //20
+		
+		#2
+		W_DataInValid = 0;
+		
+		//End of Block 1
+		//End of Tile 1
+	end
+
+	//Input Data
+	initial begin
+		#1
+		//Tile 0
+
+		//Block 0
+
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[0];
+        I_DataIn = 32'h3f800000; //1
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[1];
+        I_DataIn = 32'h40000000; //2
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[2];
+        I_DataIn = 32'h40400000; //3
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[3];
+		I_DataIn = 32'h40800000; // 4
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[4];
+        I_DataIn = 32'h40a00000; // 5
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[5];	
+        I_DataIn = 32'h40c00000; // 6	
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[6];
+        I_DataIn = 32'h40e00000; // 7
+
+		//End of Block 0
+		
+		//Block 1
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[7];
+        I_DataIn = 32'h41000000; //8        
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[8];
+        I_DataIn = 32'h41100000; //9  
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[9];
+        I_DataIn = 32'h41200000; //10  
+		
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[10];
+        I_DataIn = 32'h41300000; //11  
+		
+		#2
+		I_DataInValid = 0;
+		
+		//End of Block 1
+
+		//End of Tile 0
+		
+		#2
+		
+		//Tile 1
+		//Block 0
+
+		//Block 0
+
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[4];
+        I_DataIn = 32'h40a00000; //5
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[5];
+        I_DataIn = 32'h40c00000; //6
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[6];
+        I_DataIn = 32'h40e00000; //7
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[7];
+        I_DataIn = 32'h41000000; //8
+		
+		#2
+		I_DataInValid = 1;
+		I_DataIn = I_Buffer[8];
+        I_DataIn = 32'h41100000; //9
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[9];		
+        I_DataIn = 32'h41200000; //10
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[10];
+        I_DataIn = 32'h41300000; //11
+
+		//End of Block 0
+		
+		//Block 1
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[11];
+        I_DataIn = 32'h41400000; //12
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[12];
+        I_DataIn = 32'h41500000; //13
+
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[13];
+        I_DataIn = 32'h41600000; //14
+		
+		#2
+		I_DataInValid = 1;
+		//I_DataIn = I_Buffer[14];
+        I_DataIn = 32'h41700000; //15
+		
+		#2
+		I_DataInValid = 0;
+		
+		//End of Block 1
+		//End of Tile 1
+	end
+
+	//Output Data
+    initial begin
+		#1
+		//Tile0
+		
+		//Block 0
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[0];
+        O_DataIn = 32'h41200000; //10
+		
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[1];
+        O_DataIn = 32'h41a00000; //20
+
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[2];
+        O_DataIn = 32'h41f00000; //30
+
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[3];
+        O_DataIn = 32'h42200000; //40
+
+        //40
+
+		#2
+		O_DataInValid = 0;
+
+		//End of Block 0
+		
+		//End of Tile 0	
+		
+		#20
+
+		//Tile1
+		
+		//Block 0
+
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[4];
+        O_DataIn = 32'h41200000; //10
+		
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[5];
+        O_DataIn = 32'h41a00000; //20
+
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[6];
+        O_DataIn = 32'h41f00000; //30
+
+		#2
+		O_DataInValid = 1;
+		//O_DataIn = O_Buffer[7];
+        O_DataIn = 32'h42200000; //40
+
+		#2
+		O_DataInValid = 0;
+		
+		//End of Block 0
+
+		//End of Tile 1
+
+    end
+
+    always #1 clk = ~clk;
+		
+	
+endmodule

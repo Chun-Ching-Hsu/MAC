@@ -16,8 +16,17 @@ module PE_Group
 		I_DataInValid, I_DataInRdy, I_DataIn,
 		O_DataInValid, O_DataInRdy, O_DataIn,
 		O_DataOutValid, O_DataOutRdy, O_DataOut,
-		O_DataOut00, O_DataOut01, O_DataOut02, O_DataOut03, Test_O_OutValid,
-		I_DataOut00, I_DataOut01, I_DataOut02, I_DataOut03, Test_I_OutValid);
+		Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03, Test_O_OutValid,
+		Test_O_DataIn00, Test_O_DataIn01, Test_O_DataIn02, Test_O_DataIn03,
+		Test_W_DataIn00, Test_W_DataIn01, Test_W_DataIn02, Test_W_DataIn03,
+		Test_I_DataIn00, Test_I_DataIn01, Test_I_DataIn02, Test_I_DataIn03,
+		Test_O_InValid, Test_W_InValid, Test_I_InValid,
+		Test_O_InRdy, Test_W_InRdy, Test_I_InRdy,
+		Test_O_In_PEAddr, Test_O_Out_PEAddr, Test_I_PEAddr,
+		Test_O_In_Block_Counter, Test_I_Block_Counter,
+		Out0, Out1, Out2, Out3,
+		W0, W1, W2, W3,
+		I0, I1, I2, I3, I4, I5, I6);
 
 	input clk, aclr;
 	input W_DataInValid;
@@ -70,20 +79,6 @@ module PE_Group
 	wire [O_PEAddrWidth - 1 : 0] O_In_PEAddr;
 	wire [O_PEAddrWidth - 1 : 0] O_Out_PEAddr;
 
-	wire [BlockCountWidth - 1 : 0] I_Block_Counter;
-	wire [BlockCountWidth - 1 : 0] O_In_Block_Counter;
-	wire [BlockCountWidth - 1 : 0] O_Out_Block_Counter;
-
-	wire I_BLOCK_EQUAL_TO_ZERO;
-	wire I_BLOCK_EQUAL_TO_BLOCK_COUNT;
-
-	wire O_IN_BLOCK_EQUAL_TO_ZERO;
-	wire O_IN_BLOCK_EQUAL_TO_BLOCK_COUNT;
-	wire O_IN_BLOCK_MORE_THAN_BLOCK_COUNT;
-
-	wire O_OUT_BLOCK_EQUAL_TO_ZERO;
-	wire O_OUT_BLOCK_EQUAL_TO_BLOCK_COUNT;
-
 	assign W_Rec_Handshaking = W_DataInValid & W_DataInRdy;
 
 	reg I_Edge_PE_InValid;
@@ -113,13 +108,26 @@ module PE_Group
 		endcase
 	end
 
-	wire O_Edge_PE_InRdy;
-
-	assign O_Edge_PE_InRdy = O_InRdy[O_In_PEAddr][0];
-
-	assign O_Rec_Handshaking = O_Edge_PE_InValid & O_Edge_PE_InRdy;
+	assign O_Rec_Handshaking = O_Edge_PE_InValid & O_DataInRdy;
 
 	assign O_Send_Handshaking = O_DataOutValid & O_DataOutRdy;
+
+
+	wire [BlockCountWidth - 1 : 0] I_Block_Counter;
+	wire [BlockCountWidth - 1 : 0] O_In_Block_Counter;
+	wire [BlockCountWidth - 1 : 0] O_Out_Block_Counter;
+
+	wire I_BLOCK_EQUAL_TO_ZERO;
+	wire I_BLOCK_EQUAL_TO_BLOCK_COUNT;
+
+	wire O_IN_BLOCK_EQUAL_TO_ZERO;
+	wire O_IN_BLOCK_EQUAL_TO_BLOCK_COUNT;
+	wire O_IN_BLOCK_MORE_THAN_BLOCK_COUNT;
+
+	wire O_OUT_BLOCK_EQUAL_TO_ZERO;
+	wire O_OUT_BLOCK_EQUAL_TO_BLOCK_COUNT;
+
+
 
 	PE_Controller #(.W_PEGroupSize(W_PEGroupSize), .O_PEGroupSize(O_PEGroupSize), 
 					.W_PEAddrWidth(W_PEAddrWidth), .O_PEAddrWidth(O_PEAddrWidth), .I_PEAddrWidth(I_PEAddrWidth),
@@ -186,8 +194,7 @@ module PE_Group
 	assign O_InValid[2][0] = O_IN_BLOCK_EQUAL_TO_ZERO ? O_DataInValid && (O_In_PEAddr == 2) : ~O_IN_BLOCK_MORE_THAN_BLOCK_COUNT && (O_In_PEAddr == 2);
 	assign O_InValid[3][0] = O_IN_BLOCK_EQUAL_TO_ZERO ? O_DataInValid && (O_In_PEAddr == 3) : ~O_IN_BLOCK_MORE_THAN_BLOCK_COUNT && (O_In_PEAddr == 3);
 
-	//assign O_DataInRdy = O_InRdy[O_In_PEAddr][0];
-	assign O_DataInRdy = O_IN_BLOCK_EQUAL_TO_ZERO ? O_Edge_PE_InRdy : 0;
+	assign O_DataInRdy = O_InRdy[O_In_PEAddr][0];
 
 	//Broadcast weight to each edge PE
 	assign W_In[0][0] = W_DataIn;
@@ -222,6 +229,13 @@ module PE_Group
 	assign O_DataOut = O_ACCDataOut[O_Out_PEAddr];
 	assign O_DataOutValid = O_ACCDataOutValid[O_Out_PEAddr];
 
+	//test
+	output [BlockCountWidth - 1 : 0] Test_O_In_Block_Counter;
+	assign Test_O_In_Block_Counter = O_In_Block_Counter;
+	output [BlockCountWidth - 1 : 0] Test_I_Block_Counter;
+	assign Test_I_Block_Counter = I_Block_Counter;
+	//test
+	
 	genvar i, j;
 
 	generate    
@@ -269,7 +283,7 @@ module PE_Group
 		
 		
 		for(i = 0; i < O_PEGroupSize - 1; i = i + 1) begin: Inner_Input_Wires_i
-			for(j = 1; j < W_PEGroupSize; j = j + 1) begin: Inner_Input_Wires_j
+			for(j = 1; j < W_PEGroupSize; j = j + 1) begin: Inner_Input_Wire_j
 				assign I_InValid[i][j] = I_OutValid[i+1][j-1];
 				assign I_OutRdy[i+1][j-1] = I_InRdy[i][j];
 				assign I_In[i][j] = I_Out[i+1][j-1];
@@ -295,20 +309,75 @@ module PE_Group
 		
 	endgenerate 
 
-	output [DataWidth - 1 : 0] O_DataOut00, O_DataOut01, O_DataOut02, O_DataOut03;
-	assign O_DataOut00 = O_Out[0][0];
-	assign O_DataOut01 = O_Out[0][1];
-	assign O_DataOut02 = O_Out[0][2];
-	assign O_DataOut03 = O_Out[0][3];
+	//test
+	output [DataWidth - 1 : 0] Test_O_Data00, Test_O_Data01, Test_O_Data02, Test_O_Data03;
+	assign Test_O_Data00 = O_Out[0][0];
+	assign Test_O_Data01 = O_Out[0][1];
+	assign Test_O_Data02 = O_Out[0][2];
+	assign Test_O_Data03 = O_Out[0][3];
+
 	output [3:0] Test_O_OutValid;
 	assign Test_O_OutValid = {O_OutValid[0][3], O_OutValid[0][2], O_OutValid[0][1], O_OutValid[0][0]};
-	output [DataWidth - 1 : 0] I_DataOut00, I_DataOut01, I_DataOut02, I_DataOut03;
-	assign I_DataOut00 = I_In[0][0];
-	assign I_DataOut01 = I_In[0][1];
-	assign I_DataOut02 = I_In[0][2];
-	assign I_DataOut03 = I_In[0][3];
-	output [3:0] Test_I_OutValid;
-	assign Test_I_OutValid = {I_OutValid[0][3], I_OutValid[0][2], I_OutValid[0][1], I_OutValid[0][0]};
+
+	output [DataWidth - 1 : 0] Test_O_DataIn00, Test_O_DataIn01, Test_O_DataIn02, Test_O_DataIn03;
+	output [DataWidth - 1 : 0] Test_W_DataIn00, Test_W_DataIn01, Test_W_DataIn02, Test_W_DataIn03;
+	output [DataWidth - 1 : 0] Test_I_DataIn00, Test_I_DataIn01, Test_I_DataIn02, Test_I_DataIn03;
+	assign Test_O_DataIn00 = O_In[0][0];
+	assign Test_O_DataIn01 = O_In[0][1];
+	assign Test_O_DataIn02 = O_In[0][2];
+	assign Test_O_DataIn03 = O_In[0][3];
+
+	assign Test_W_DataIn00 = W_In[0][0];
+	assign Test_W_DataIn01 = W_In[0][1];
+	assign Test_W_DataIn02 = W_In[0][2];
+	assign Test_W_DataIn03 = W_In[0][3];
+
+	assign Test_I_DataIn00 = I_In[0][0];
+	assign Test_I_DataIn01 = I_In[0][1];
+	assign Test_I_DataIn02 = I_In[0][2];
+	assign Test_I_DataIn03 = I_In[0][3];
+
+	output [3:0] Test_O_InValid;
+	output [3:0] Test_W_InValid;
+	output [3:0] Test_I_InValid;
+	assign Test_O_InValid = {O_InValid[0][3], O_InValid[0][2], O_InValid[0][1], O_InValid[0][0]};
+	assign Test_W_InValid = {W_InValid[0][3], W_InValid[0][2], W_InValid[0][1], W_InValid[0][0]};
+	assign Test_I_InValid = {I_InValid[0][3], I_InValid[0][2], I_InValid[0][1], I_InValid[0][0]};
 	
+	output [3:0] Test_O_InRdy;
+	output [3:0] Test_W_InRdy;
+	output [3:0] Test_I_InRdy;
+	assign Test_O_InRdy = {O_InRdy[0][3], O_InRdy[0][2], O_InRdy[0][1], O_InRdy[0][0]};
+	assign Test_W_InRdy = {W_InRdy[0][3], W_InRdy[0][2], W_InRdy[0][1], W_InRdy[0][0]};
+	assign Test_I_InRdy = {I_InRdy[0][3], I_InRdy[0][2], I_InRdy[0][1], I_InRdy[0][0]};
+	
+	output [O_PEAddrWidth - 1 : 0] Test_O_In_PEAddr, Test_O_Out_PEAddr;
+	output [I_PEAddrWidth - 1 : 0] Test_I_PEAddr;
+	assign Test_O_In_PEAddr = O_In_PEAddr;
+	assign Test_O_Out_PEAddr = O_Out_PEAddr;
+	assign Test_I_PEAddr = I_PEAddr;
+	
+	//examine the input of data
+
+	output [DataWidth - 1 : 0] Out0, Out1, Out2, Out3;
+	output [DataWidth - 1 : 0] W0, W1, W2, W3;
+	output [DataWidth - 1 : 0] I0, I1, I2, I3, I4, I5, I6;
+	assign Out0 = O_In[0][0];
+	assign Out1 = O_In[1][0];
+	assign Out2 = O_In[2][0];
+	assign Out3 = O_In[3][0];
+	assign W0 = W_In[0][0];
+	assign W1 = W_In[0][1];
+	assign W2 = W_In[0][2];
+	assign W3 = W_In[0][3];
+	assign I0 = I_In[0][0];
+	assign I1 = I_In[1][0];
+	assign I2 = I_In[2][0];
+	assign I3 = I_In[3][0];
+	assign I4 = I_In[3][1];
+	assign I5 = I_In[3][2];
+	assign I6 = I_In[3][3];
+	
+	//test
 
 endmodule 
